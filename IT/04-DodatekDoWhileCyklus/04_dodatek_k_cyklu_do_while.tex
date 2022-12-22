@@ -1,0 +1,64 @@
+\documentclass[14pt,aspectratio=169]{beamer}
+
+
+% Assets
+\input{assets/packages.tex}
+\input{assets/theme.tex}
+\input{assets/macros.tex}
+
+% Title page
+\title{Dodatek k \texttt{do while} cyklu}
+\subtitle{Informační a komunikační technologie}
+\author{David Weber}
+\date{\today}
+
+\begin{document}
+
+    % Itemize
+    \setlist[itemize]{label=\textcolor{white}{\textbullet}}
+
+    % Slides
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Cyklus \texttt{do while}}
+        \begin{itemize}
+            \item Stejně jako cyklu \texttt{while}, i zde činnost cyklu končí ve chvíli, kdy není splněna podmínka.
+            \item Rozdíl je však, že ke kontrole podmínky dochází až po provedení iterace
+            \item $\implies$ tělo cyklu se vykoná \textbf{vždy alespoň jednou}.
+            \item Syntaxe:
+            \begin{lstlisting}
+do {
+
+}
+while (podmínka);
+            \end{lstlisting}
+            \item V plošných strukturogramech odpovídá \textbf{iteraci s testem na konci}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{lstlisting}
+int cont = 0;
+do {
+    float x;
+    scanf("%f", &x);
+
+    printf("sqrt(%g) = %g\n", x, sqrt(x));
+
+    printf("Prejete si pokracovat? (1 == ANO)\n");
+    scanf("%d", &cont);
+}
+while (cont == 1);
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Otázky?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.4]{images/discussion_inverted.png}
+        \end{figure}
+    \end{frame}
+
+\end{document}

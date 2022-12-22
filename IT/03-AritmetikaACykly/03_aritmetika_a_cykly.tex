@@ -1,0 +1,332 @@
+\documentclass[14pt,aspectratio=169]{beamer}
+
+\input{packages.tex}
+
+% Assets
+\input{assets/theme.tex}
+\input{assets/macros.tex}
+
+% Title page
+\title{Aritmetika a cykly}
+\author{David Weber}
+\date{\today}
+
+\begin{document}
+
+    % Itemize
+    \setlist[itemize]{label=\textcolor{white}{\textbullet}}
+
+    % Slides
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Připomenutí z minula}
+        \begin{itemize}
+            \item Příkazy:
+            \begin{itemize}
+                \item \texttt{printf(\dots)} $\rightarrow$ výpis
+                \item \texttt{scanf(\dots)} $\rightarrow$ načtení vstupu
+                \item \texttt{\%d, \%f, \%s, \dots} $\rightarrow$ formátové specifikace
+            \end{itemize}
+            \item Větvení programu:
+            \begin{lstlisting}
+if (podmínka) {
+    // Kód programu
+}
+            \end{lstlisting}
+            \item Logické spojky \texttt{\&\&} a \texttt{||}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Co dnes probereme}
+        \begin{itemize}
+            \item Datové typy
+            \item Aritmetické operátory a knihovna \markorange{\texttt{math}}
+            \item Cykly \markorange{\texttt{while}} a \markorange{\texttt{for}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Datové typy}
+        \begin{itemize}
+            \item \textbf{Datový typ} definuje druh hodnot, kterých smí nabývat proměnná (nebo konstanta).
+            \item 2 druhy:
+            \begin{itemize}
+                \item \textbf{jednoduché} $\leftarrow$ typicky přímou součástí jazyka,
+                \item \textbf{složené} $\leftarrow$ obsahují více prvků (stejného či různých datových typů).
+            \end{itemize}
+            \item Deklarace v jazyce C: \texttt{\markblue{<datový typ>} <název proměnné>}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{S čím budeme pracovat\dots}
+        \begin{itemize}
+            \item \markblue{int} (integer) $\leftarrow$ celočíselný datový typ
+            \begin{itemize}
+                \item $16$ nebo $32$ bitů (typicky $32$)
+            \end{itemize}
+            \item \markblue{float} (floating point) $\leftarrow$ desetinný datový typ
+            \begin{itemize}
+                \item $32$ bitů
+                \item uchovává $6$ platných cifer.
+            \end{itemize}
+            \item \markblue{double} $\leftarrow$ desetinný datový typ (dvojnásobný rozsah oproti \texttt{float})
+            \begin{itemize}
+                \item $64$ bitů
+                \item uchovává $15$ platných cifer.
+            \end{itemize}
+            \item Přehled všech datových typů v C (pro zájemce): \href{https://en.wikipedia.org/wiki/C_data_types}{\underline{zde}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Další datové typy}
+        \begin{itemize}
+            \item \markblue{char} $\leftarrow$ reprezentuje číslo nebo znak
+            \begin{itemize}
+                \item 8 bitů
+            \end{itemize}
+            \item Řetězce znaků \texttt{\markorange{\textquotedblleft\dots\textquotedblright}} $\leftarrow$ složitější, zatím nebudeme řešit \emoji{slightly-smiling-face}
+            \item \markblue{void} $\leftarrow$ prázdný datový typ, nenabývá žádné hodnoty.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Aritmetika}
+        \begin{itemize}
+            \item Jazyk C v základu podporuje standardní aritmetické operace.
+            \item Operátory:
+            \begin{itemize}
+                \item Sčítání \texttt{+}
+                \item Odčítání \texttt{-}
+                \item Násobení \texttt{*}
+                \item Dělení \texttt{/}
+            \end{itemize}
+            Priorita operací je stejná jako v matematice, popř. ji lze stanovit pomocí závorek \texttt{(,)}. 
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int a, b;
+    scanf("%d %d", &a, &b);
+
+    int sum = a + b;
+
+    printf("%d", sum);
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        Procentuální podíl $x$ vůči $y$:
+        \begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    float x, y;
+    scanf("%f %f", &x, &y);
+    
+    float percent = 100 * x / y;
+    
+    printf("%g", percent);
+
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t]{Knihovna \texttt{math}}
+        \begin{itemize}
+            \item Standardní aritmetické operace nám již nebudou stačit, pokud budeme chtít počítat se složitějšími výrazy.
+            \item Knihovna \texttt{math} poskytuje různé matematické funkce pro počítání např. s
+            \begin{itemize}
+                \item \textbf{mocninami},
+                \item \textbf{odmocninami},
+                \item \textbf{goniometrickými funkcemi},
+                \item \textbf{logaritmy},
+                \item \dots
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Přehled některých funkcí}
+        \begin{itemize}
+            \item Co se vám může hodit:
+            \begin{itemize}
+                \item \texttt{pow(x, n)} $\leftarrow$ vypočítá $x^n$.
+                \item \texttt{sqrt(x)} $\leftarrow$ vypočítá $\sqrt{x}$.
+                \item \texttt{floor(x)} $\leftarrow$ zaokrouhlení čísla $x$ dolů.
+                \item \texttt{ceil(x)} $\leftarrow$ zaokrouhlení čísla $x$ nahoru.
+            \end{itemize}
+            \item Všechny vypočtené hodnoty jsou v přesnosti \markblue{double}.
+            \item Kompletní přehled (pro zájemce) \href{https://www.tutorialspoint.com/c_standard_library/math_h.htm}{\underline{zde}}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Cykly}
+        \begin{itemize}
+            \item Často budeme potřebovat nějakou část kódu vykonat vícekrát.
+            \item Je pochopitelně hloupost kopírovat stejný kód několikrát pod sebe. \emoji{slightly-smiling-face}
+            \item K tomu se nám bude hodit tzv. cyklus (anglicky \emph{loop}).
+            \item V jazyce C existují 3 typy:
+            \begin{itemize}
+                \item \texttt{While}
+                \item \texttt{Do While}
+                \item \texttt{For}
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Cyklus \texttt{while}}
+        \begin{itemize}
+            \item Používáme, pokud dopředu neznáme počet opakování cyklu.
+            \item Syntaxe:
+            \begin{lstlisting}
+while (podmínka) {
+    // Kód programu
+}
+            \end{lstlisting}
+            \item Odpovídá \textbf{iteraci s testem na začátku}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Příklad}
+        \begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int n;
+    scanf("%d", &n);
+    while (n > 1) {
+        print("%d", n);
+        n = n / 2;
+    }
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        I zde lze použít logické spojky (jako u \markblue{if}):
+        \begin{lstlisting}
+#include <stdio.h>
+int main(void) {
+    int x, y;
+    scanf("%d %d", &x, &y);
+    while (x > 1 || y < 1000) {
+    printf("x = %d\ny = %d", x, y);
+        x = x / 2;
+        y = y * 2;
+    }
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Cyklus \texttt{for}}
+        \begin{itemize}
+            \item Používáme, pokud naopak dopředu známe počet opakování.
+            \item Syntaxe:
+            \begin{lstlisting}
+for (deklarace; podmínka; aktualizace) {
+    // Kód
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Cyklus \texttt{for}}
+        \begin{itemize}
+            \item Syntaxe:
+            \begin{lstlisting}
+for (deklarace; podmínka; aktualizace) {
+    // Kód
+}
+            \end{lstlisting}
+            \item Popis činnosti:
+            \begin{itemize}
+                \item provede se deklarace proměnné,
+                \item zkontroluje se podmínka,
+                \item pokud podmínka platí, provede se tělo cyklu,
+                \item na vykonání těla cyklu se provede \textbf{aktualizace},
+                \item znovu se zkontroluje podmínka a cyklus se opakuje,
+                \item pokud podmínka neplatí, činnost cyklu končí.
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Cyklus \texttt{for}}
+        \begin{itemize}
+            \item Typický příklad zápisu:
+            \begin{lstlisting}
+for (int i = 0; i < 10; i++) {
+    // Kód
+}
+            \end{lstlisting}
+            \item \texttt{i++} je ekvivalent zápisu \texttt{i = i + 1} (nejčastěji se používá právě u
+            for cyklu).
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        Součet všech sudých čísel menších než $n$:
+        \begin{lstlisting}
+int n;
+scanf("%d", &n);
+int sum = 0;
+for (int i = 0; i < n; i++) {
+    if (i % 2 == 0) {
+        sum += i;
+    }
+}
+printf("%d", sum);
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        Nebo jinak:
+        \begin{lstlisting}
+int n;
+scanf("%d", &n);
+int sum = 0;
+for (int i = 0; i < n; i += 2) {
+    sum += i;
+}
+printf("%d", sum);
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Dodatek k desetinným číslům}
+        \begin{itemize}
+            \item \markorange{Nikdy neporovnáváme desetinná čísla na rovnost \xmark}
+            \begin{lstlisting}
+float x = 0.1;
+x += 0.2;
+if (x == 0.3) {
+    // Kód
+}
+            \end{lstlisting}
+            \item \markgreen{Lze pouze porovnávat max. odchylku \cmark}
+            \begin{lstlisting}
+if (fabs(x - 0.3) < 0.01) {
+    // Kód
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Dodatek k desetinným číslům}
+        \begin{itemize}
+            \item \textbf{Důvod:} při počítání s desetinnými čísly dochází k zaokrouhlovací chybě.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Otázky?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.4]{images/discussion_inverted.png}
+        \end{figure}
+    \end{frame}
+
+\end{document}

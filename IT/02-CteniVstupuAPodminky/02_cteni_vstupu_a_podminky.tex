@@ -1,0 +1,184 @@
+\documentclass[14pt]{beamer}
+
+\input{packages.tex}
+
+% Assets
+\input{assets/theme.tex}
+\input{assets/macros.tex}
+
+% Title page
+\title{Čtení vstupu a podmínky}
+\author{David Weber}
+\date{\today}
+
+\begin{document}
+
+    % Itemize
+    \setlist[itemize]{label=\textcolor{white}{\textbullet}}
+
+    % Slides
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Co už známe\dots}
+        \begin{itemize}
+            \item Tělo programu a vkládání knihoven.
+            \begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+
+    // Kód programu
+
+    return 0;
+}
+            \end{lstlisting}
+            \item \texttt{printf(\dots)} -- příkaz pro výpis textového řetězce.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Co dnes probereme}
+        \begin{itemize}
+            \item Čtení vstupu od uživatele
+            \item Výpis proměnné
+            \item Větvení programu (podmínky)
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Čtení vstupu}
+        \begin{itemize}
+            \item Příkaz \texttt{scanf(\textbf{<formátovací řetězec>}, \&\textbf{<proměnná>});}
+            \item Formátovací řetězec
+            \begin{itemize}
+                \item Specifikuje \markorange{datový typ} vstupní hodnoty
+                \item Základní položky:
+                \begin{itemize}
+                    \item \texttt{\%d} $\leftarrow$ celé číslo (\markgreen{int})
+                    \item \texttt{\%f} $\leftarrow$ číslo s desetinnou částí (\markorange{float})
+                    \item \texttt{\%s} $\leftarrow$ řetězec znaků (\markorange{string})
+                \end{itemize}
+                \item Píšeme do uvozovek \textquotedbl{} \textquotedbl (je to řetězec).
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{lstlisting}
+#include <stdio.h>
+
+int main() {
+    int x;
+    scanf("%d", &x);
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Výpis proměnné}
+        \begin{itemize}
+            \item Provádíme také pomocí formátovacího řetězce.
+            \item Pomocí \%d\,/\,\%f\,/\,\%s specifikujeme typ proměnné, kterou vypisujeme.
+            \item Už nepíšeme \&.
+            \begin{lstlisting}
+int x;
+x = 5;
+printf("%d", x);
+            \end{lstlisting}
+            \item Program vypíše 5.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Více hodnot}
+        \begin{itemize}
+            \item V rámci jednoho příkazu lze načíst/vypsat i více hodnot.
+            \item Příklad pro dvě hodnoty
+            \begin{lstlisting}
+int x;
+int y;
+scanf("%d %d", &x, &y);
+printf("%d %d", x, y);
+            \end{lstlisting}
+            \item Lze načítat/vypisovat libovolný počet hodnot.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Podmínky}
+        \begin{itemize}
+            \item Umožňují reagovat na různé situace, které mohou v programu nastat.
+            \item Skládá se z \textbf{logického výrazu} určujícího podmínku a tzv. \textbf{těla}.
+            \item Klíčové slovo \texttt{if}.
+            \begin{lstlisting}
+if (podmínka) {
+    // Kód programu
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{lstlisting}
+int x;
+scanf("%d", &x);
+if (x > 5) {
+    printf("x je vetsi nez 5");
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t]{Operátory}
+        \begin{itemize}
+            \item Seznam operátorů:
+            \begin{itemize}
+                \item \texttt{==} (rovnost)
+                \item \texttt{!=} (nerovnost)
+                \item \texttt{<} (menší než)
+                \item \texttt{>} (větší než)
+                \item \texttt{<=} (menší než nebo rovno)
+                \item \texttt{>=} (větší než nebo rovno)
+            \end{itemize}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Logické operátory}
+        \begin{itemize}
+            \item Umožňují "sloučení" více podmínek do jedné.
+            \item Seznam operátorů:
+            \begin{itemize}
+                \item \texttt{\&\&} - logický \textbf{AND} (podmínka je splněna, pokud jsou \textbf{všechny} dílčí podmínky splněny).
+                \item \texttt{||} - logický \textbf{OR} (podmínka je splněna, pokud je splněna \textbf{alespoň jedna} z dílčích podmínek).
+            \end{itemize}
+            \item Syntaxe:
+            \begin{center}
+                \texttt{if (podm$_1$ \&\& podm$_2$ \&\& \dots{ }\&\& podm$_n$)}\\
+                \texttt{if (podm$_1$ || podm$_2$ || \dots{ }|| podm$_n$)}
+            \end{center}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{itemize}
+            \item Podmínka, že zadané číslo $x$ je z intervalu $\langle 0,\,5\rangle$
+            \begin{lstlisting}
+#include <stdio.h>
+
+int main(void) {
+    int x;
+    scanf("%d", &x);
+
+    if (x >= 0 && x <= 5) {
+        printf("Cislo x je z intervalu (0, 5).");
+    }
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Otázky?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.4]{images/discussion_inverted.png}
+        \end{figure}
+    \end{frame}
+
+\end{document}
