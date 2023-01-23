@@ -1,0 +1,28 @@
+% Beamer theme
+\usetheme{Boadilla}
+\setbeamertemplate{frame numbering}[fraction]
+\usecolortheme[named=black]{structure}
+\setbeamertemplate{navigation symbols}{}
+\setbeamerfont{title}{series=\bfseries,parent=structure}
+\setbeamerfont{frametitle}{series=\bfseries,parent=structure}
+\usefonttheme[onlymath]{serif}
+\urlstyle{same}
+
+% Dark theme
+\setbeamercolor{frametitle}{fg=white}
+\setbeamercolor{title}{fg=white}
+\setbeamercolor{background canvas}{bg=black}
+\setbeamercolor{normal text}{fg=white}
+
+\defbeamertemplate*{title page}{customized}[1][]
+{ 
+  \usebeamerfont*{title}\title\par
+  \usebeamerfont*{subtitle}\textit{\subtitle}\par
+  \bigskip
+  \usebeamerfont{title}\huge\inserttitle\normalsize\par
+  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \bigskip \bigskip \bigskip \bigskip 
+  \usebeamerfont{author}\authorname\par
+  \usebeamerfont{institute}Kabinet \office\\\url{weber3@spsejecna.cz}\bigskip
+
+}

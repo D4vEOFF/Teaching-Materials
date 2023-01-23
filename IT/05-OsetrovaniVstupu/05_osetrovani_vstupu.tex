@@ -1,0 +1,111 @@
+\documentclass[14pt,aspectratio=169]{beamer}
+
+
+% Assets
+\input{assets/packages.tex}
+\input{assets/theme.tex}
+\input{assets/macros.tex}
+
+% Title page
+\def\title{Informační a komunikační technologie}
+\def\subtitle{Ošetřování vstupu}
+\def\authorname{David Weber}
+\def\office{K13}
+\def\email{weber3@spsejecna.cz}
+
+\begin{document}
+
+    % Itemize
+    \setlist[itemize]{label=\textcolor{white}{\textbullet}}
+
+    % Slides
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Jak to bylo doposud\dots}
+        \begin{itemize}
+            \item Zatím jsme předpokládali inteligentního uživatele.
+            \item Tzn. uživatel zadával pouze povolené hodnoty.
+            \item \markred{V realitě uživatel však nemusí zadat požadovanou hodnotu!}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad na začátek}
+        \begin{lstlisting}
+int value;
+scanf("%d", &value);
+
+if (value == 0) {
+    printf("1");
+    return 0;
+}
+int fact = 1;
+for (int i = 1; i <= value; i++) {
+    fact *= i;
+}
+
+printf("%d", fact);
+return 0;
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t]{Příklad na začátek}
+        \begin{itemize}
+            \item Co bylo na tomto programu špatně?
+            \item \markred{$\implies$ uživatel nemusí zadat \textbf{nezáporné celé číslo}!}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Jak toto řešit?}
+        \begin{itemize}
+            \item Před každým programem je třeba si promyslet, které vstupy jsou přípustné.
+            \item U předešlé úlohy by se hodilo ošetřit, zda je hodnota na vstupu přípustná.
+            \item \markgreen{Můžeme např. na začátek programu přidat:}
+            \begin{lstlisting}
+if (n < 0) {
+    printf("CHYBNY VSTUP!");
+    return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Problémy nekončí\dots}
+        \begin{itemize}
+            \item Uživatel nemusí zadat nic nebo např. znak.
+            \item Toto již pomocí podmínek lze jen těžko odchytit. \emoji{crying-face}
+            \item \markgreen{$\implies$ funkce \texttt{scanf} má však tzv. \textbf{návratovou hodnotu}!}
+            \begin{lstlisting}
+int value;
+int paramCount = scanf("%d", &value);
+
+printf("%d", paramCount);
+            \end{lstlisting}
+            \item V proměnné \texttt{paramCount} je uložen počet úspěšně načtených parametrů.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Úprava programu}
+        \begin{itemize}
+            \item V případě program s faktoriálem uživatel zadává \textbf{jeden parametr}.
+            \begin{lstlisting}
+int value;
+int paramCount = scanf("%d", &value);
+
+if (paramCount < 1){
+    printf("CHYBNY VSTUP!");
+    return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Otázky?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.4]{images/discussion_inverted.png}
+        \end{figure}
+    \end{frame}
+
+\end{document}
