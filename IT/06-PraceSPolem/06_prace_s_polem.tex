@@ -25,6 +25,105 @@
         \titlepage
     \end{frame}
 
+    \begin{frame}[t,fragile]{Jak jsme zatím pracovali\dots}
+        \begin{itemize}
+            \item Zatím jsme pracovali se samostatnými proměnnými
+            \item Např. načtení rozměrů obdélníku
+            \begin{lstlisting}
+float width, height;
+scanf("%d %d", &width, &height);
+            \end{lstlisting}
+            \item \markgreen{Funguje pro pevný počet hodnot.} \emoji{slightly-smiling-face}
+            \item \markred{Nefunguje pro proměnný počet hodnot.} \emoji{worried-face}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Co použít?}
+        \begin{itemize}
+            \item Můžeme se dostat do situace, kde počet hodnot, které potřebujeme uchovat, závisí buď přímo na uživateli, nebo na jiných okolnostech
+            \item $\implies$ pro uchování většího množství hodnot \textbf{stejného datového typu} používáme tzv. \textbf{pole} (anglicky \emph{array}).
+            \item Lze si představit jako "řadu přihrádek"
+            \begin{figure}
+                \includegraphics[scale=.8]{images/array1.pdf}
+            \end{figure}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Vlastnosti pole I}
+        \begin{itemize}
+            \item Každý prvek má v poli svoji pozici (index), které se číslují \textbf{od nuly}.
+            \item Pro obecný počet prvků $n$ máme tak indexy $0,\,1,\,2,\,\dots,\,n-1$.
+            \item Pole deklarujeme pomocí \textbf{datového typu prvků} a jeho \textbf{velikosti (tj. počtu prvků)}. Např.
+            \begin{lstlisting}
+int array[10];
+            \end{lstlisting}
+            \item Případně lze rovnou deklarovat pole i s uchovanými hodnotami:
+            \begin{lstlisting}
+int array[] = { -1, 0, 2023, 40 };
+            \end{lstlisting}
+            \item V takovém případě nemusíme uvádět velikost.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Vlastnosti pole II}
+        \begin{itemize}
+            \item K prvkům přistupujeme pomocí jejich \textbf{indexu}, který uvádíme do hranatých závorek.
+            \begin{lstlisting}
+int array[10];
+array[0] = 1;
+array[3] = -10;
+            \end{lstlisting}
+            \item Podobně můžeme např. vypsat daný prvek v poli či načíst hodnotu na vstupu:
+            \begin{lstlisting}
+scanf("%d", &array[7]);
+printf("%d", array[7]);
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (1/2)}
+        Výpis všech zadaných prvků:
+        \begin{lstlisting}
+// Load array length
+int count;
+scanf("%d", &count);
+
+int numbers[count];
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (2/2)}
+        \begin{lstlisting}
+// Fetch numbers into array
+int i;
+for (i = 0; i < count; i++){
+    scanf("%d", &numbers[i]);
+}
+
+// Print array
+for (i = 0; i < count; i++){
+    printf("%d ", numbers[i]);
+}
+
+return 0;
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Vlastnosti pole III}
+        \begin{itemize}
+            \item Co když zasáhnu indexem mimo pole?
+            \begin{lstlisting}
+int arr[5];
+arr[7] = ...;
+            \end{lstlisting}
+            \item \markred{Jazyk C toto neošetřuje $\implies$ zasáhneme mimo blok paměti pole!}
+            \begin{figure}
+                \includegraphics[scale=.8]{images/array_memory.pdf}
+            \end{figure}
+            \item Může tak dojít k přepisu jiné proměnné
+        \end{itemize}
+    \end{frame}
+
     \begin{frame}{Otázky?}
         \begin{figure}
             \centering
