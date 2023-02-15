@@ -16,13 +16,10 @@
 
 \defbeamertemplate*{title page}{customized}[1][]
 { 
-  \usebeamerfont*{title}\title\par
-  \usebeamerfont*{subtitle}\textit{\subtitle}\par
+  \usebeamerfont*{title}\inserttitle\par
   \bigskip
-  \usebeamerfont{title}\huge\inserttitle\normalsize\par
-  \usebeamerfont{subtitle}\usebeamercolor[fg]{subtitle}\insertsubtitle\par
+  \usebeamerfont*{subtitle}\textit{\insertsubtitle}\par
   \bigskip \bigskip \bigskip \bigskip 
-  \usebeamerfont{author}\authorname\par
+  \usebeamerfont{author}\insertauthor\par
   \usebeamerfont{institute}Kabinet \office\\\url{weber3@spsejecna.cz}\bigskip
-
 }
