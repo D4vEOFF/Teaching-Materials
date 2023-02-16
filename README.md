@@ -4,18 +4,21 @@
 
 # Úvodem
 
-Zde naleznete veškeré materiály k předmětům, které vyučuji nebo jsem v minulosti vyučoval na SPŠE Ječná.
+Zde naleznete veškeré materiály k předmětům, které vyučuji nebo jsem v minulosti vyučoval na SPŠE Ječná. Většina materiálů je psána v TeXu a jsou volně k šíření. Pokud si kdokoliv všimne nějaké nepřesnosti či nepřesnosti, budu velmi rád, když mi dáte vědět.
 
 # Obsah
 - [SPŠE Ječná](#spše-ječná)
 - [Úvodem](#úvodem)
 - [Obsah](#obsah)
-- [Informační a komunikační technologie (IT)](#informační-a-komunikační-technologie-it)
-  - [Cvičení na oborech A, E (1. ročník)](#cvičení-na-oborech-a-e-1-ročník)
+- [Předměty](#předměty)
+  - [Informační a komunikační technologie (IT)](#informační-a-komunikační-technologie-it)
+    - [Cvičení na oborech A, E (1. ročník)](#cvičení-na-oborech-a-e-1-ročník)
 
-# Informační a komunikační technologie (IT)
+# Předměty
 
-## Cvičení na oborech A, E (1. ročník)
+## Informační a komunikační technologie (IT)
+
+### Cvičení na oborech A, E (1. ročník)
 
 Probíraná témata:
 1. **Číselné soustavy** a převody mezi nimi (prezentace [zde](IT/00-CiselneSoustavy/00_prevody_mezi_soustavami.pdf))
