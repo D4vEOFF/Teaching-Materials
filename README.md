@@ -1,5 +1,3 @@
-# SPŠE Ječná
-
 <img src="https://www.spsejecna.cz/ci/SPSE-Jecna_Logo.svg" alt="Logo SPŠE Ječná" width="250">
 
 # Úvodem
