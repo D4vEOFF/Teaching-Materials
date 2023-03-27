@@ -1,5 +1,3 @@
-# SPŠE Ječná
-
 <img src="https://www.spsejecna.cz/ci/SPSE-Jecna_Logo.svg" alt="Logo SPŠE Ječná" width="250">
 
 # Úvodem
@@ -7,7 +5,6 @@
 Zde naleznete veškeré materiály k předmětům, které vyučuji nebo jsem v minulosti vyučoval na SPŠE Ječná. Většina materiálů je psána v TeXu a jsou volně k šíření. Pokud si kdokoliv všimne nějaké nepřesnosti či nepřesnosti, budu velmi rád, když mi dáte vědět.
 
 # Obsah
-- [SPŠE Ječná](#spše-ječná)
 - [Úvodem](#úvodem)
 - [Obsah](#obsah)
 - [Předměty](#předměty)

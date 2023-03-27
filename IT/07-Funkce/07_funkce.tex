@@ -1,0 +1,122 @@
+\documentclass[14pt,aspectratio=169]{beamer}
+
+% Assets
+\input{assets/packages.tex}
+\input{assets/theme.tex}
+\input{assets/macros.tex}
+
+% Title page
+\title{Informační a komunikační technologie}
+\subtitle{Funkce v C}
+\author{David Weber}
+\def\office{K13}
+\def\email{weber3@spsejecna.cz}
+
+\begin{document}
+
+    % Itemize
+    \setlist[itemize]{label=\textcolor{white}{\textbullet}}
+
+    % Slides
+    \begin{frame}
+        \titlepage
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad na úvod}
+        \begin{lstlisting}
+// Print array
+for (int i = 0; i < size; i++) {
+    printf("%d ", arr[i]);
+}
+printf("\n");
+// Square array elements
+for (int i = 0; i < size; i++) {
+    arr[i] *= arr[i];
+}
+// Print array
+for (int i = 0; i < size; i++) {
+    printf("%d ", arr[i]);
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{V čem je problém?}
+        \begin{itemize}
+            \item Kód je funkční, ale část pro výpis pole je zde uvedena \textbf{dvakrát}.
+            \begin{lstlisting}
+for (int i = 0; i < size; i++) {
+    printf("%d ", arr[i]);
+}
+            \end{lstlisting}
+            \item \markred{Opakující kód je nepraktický} \xmark
+            \begin{itemize}
+                \item budeme-li chtít změnit nějakou jeho část, musíme změnu provést všude
+            \end{itemize}
+            \item \markgreen{Použijeme funkci} \cmark
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Co je to funkce?}
+        \begin{itemize}
+            \item Obecně se jedná o část programu, kterou je možné opakovaně ``vyvolat'' v různých místech programu.
+            \item 
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Struktura funkce}
+        \begin{lstlisting}
+navratovy_typ jmeno(parametry) {
+    <implementace>
+}
+        \end{lstlisting}
+        \begin{itemize}
+            \item U funkce je třeba specifikovat:
+            \begin{itemize}
+                \item návratový datový typ,
+                \item jméno (identifikátor),
+                \item parametry,
+                \item tělo (implementace).
+            \end{itemize}
+            \item Funkce uvádíme mimo tělo funkce \texttt{main}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Funkce bez návratové hodnoty a parametrů}
+        \begin{itemize}
+            \item Nejjednodušší typ funkce.
+            \item Klíčové slovo \markblue{\texttt{void}}, prázdné závorky \texttt{()}
+            \begin{lstlisting}
+void greet() {
+    printf("Hello World!");
+}
+            \end{lstlisting}
+            \item Samotná deklarace funkce nic nedělá $\implies$ \markorange{je třeba ji tzv. \textbf{zavolat}.}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Volání funkce}
+        \begin{itemize}
+            \item Je třeba specifikovat, kde v programu se má daná funkce provést.
+            \begin{lstlisting}
+void greet() {
+    printf("Hello World!");
+}
+            
+int main() {
+
+    greet();    // Prints out "Hello World!"
+
+    return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Otázky?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.4]{images/discussion_inverted.png}
+        \end{figure}
+    \end{frame}
+
+\end{document}
