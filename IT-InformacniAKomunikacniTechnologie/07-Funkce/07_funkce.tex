@@ -59,7 +59,12 @@ for (int i = 0; i < size; i++) {
     \begin{frame}[t]{Co je to funkce?}
         \begin{itemize}
             \item Obecně se jedná o část programu, kterou je možné opakovaně ``vyvolat'' v různých místech programu.
-            \item 
+            \item Motivace pro použití:
+            \begin{itemize}
+                \item odstranění opakování kódu v programu,
+                \item rozklad složitých problémů na jednodušší,
+                \item znovupoužití v jiných programech, např. formou knihoven (to až ve druháku \emoji{shushing-face}).
+            \end{itemize}
         \end{itemize}
     \end{frame}
 
@@ -81,15 +86,16 @@ navratovy_typ jmeno(parametry) {
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Funkce bez návratové hodnoty a parametrů}
+    \begin{frame}[t,fragile]{Funkce bez parametrů}
         \begin{itemize}
             \item Nejjednodušší typ funkce.
-            \item Klíčové slovo \markblue{\texttt{void}}, prázdné závorky \texttt{()}
+            \item Klíčové slovo \markblue{\texttt{void}} (prázdný datový typ), do závorek \texttt{(\markblue{void})} nebo nechat prázdné, tj. \texttt{()}
             \begin{lstlisting}
-void greet() {
+void greet(void) {
     printf("Hello World!");
 }
             \end{lstlisting}
+            \item \textbf{Důležité:} funkci musíme uvést nad \texttt{main}!
             \item Samotná definice funkce nic nedělá $\implies$ \markorange{je třeba ji tzv. \textbf{zavolat}.}
         \end{itemize}
     \end{frame}
@@ -98,17 +104,87 @@ void greet() {
         \begin{itemize}
             \item Je třeba specifikovat, kde v programu se má daná funkce provést.
             \begin{lstlisting}
-void greet() {
+void greet(void) {
     printf("Hello World!");
 }
             
-int main() {
+int main(void) {
 
     greet();    // Prints out "Hello World!"
 
     return 0;
 }
             \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Funkce s parametry}
+        \begin{itemize}
+            \item Často budeme chtít činnost funkce zobecnit (výstup funkce bude na něčem záviset).
+            \item $\implies$ k tomu použijeme tzv. \textbf{parametry}.
+            \item Do kulatých závorek \texttt{()} uvádíme výčet parametrů (jejich datový typ a název), které funkce přijímá.
+            \begin{lstlisting}
+void fce(<datovy_typ> var1, <datovy_typ> var2, ...) {
+    ...
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad I (funkce s parametrem)}
+        \begin{lstlisting}
+void square(float x) {
+    printf("Druha mocnina x je %g", x*x);
+}
+
+int main(void) {
+
+    float input;
+    scanf("%f", &input);
+
+    square(input);
+    
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad II (funkce s více parametry)}
+        Funkce pro výpočet aritmetického průměru celých čísel $a,\,b\in\mathbb{Z}$:
+        \begin{lstlisting}
+void average(int a, int b) {
+    float avg = (a + b) / 2;
+    printf("%g", avg);
+}
+
+int main(void) {
+    float input1, input2;
+    scanf("%d %d", &input1, &input2);
+
+    average(input1, input2);
+    
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}{Úloha I}
+        Předělejte program pro výpis faktoriálu, tj.
+        \begin{equation*}
+            n!=n(n-1)(n-2)\cdots 2\cdot 1,
+        \end{equation*}
+        do funkce. (Viz domácí úkol \emoji{slightly-smiling-face})
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Funkce s návratovou hodnotou}
+        \begin{itemize}
+            \item \textbf{Problém:} s hodnotou, kterou funkce vypočte, nemůžeme dále pracovat (pouze ji na konci vypisujeme).
+            \item Např. u funkcí \texttt{pow}, \texttt{sqrt}, \dots (viz knihovna \textbf{math}) jsme mohli s vypočtenou hodnotou dále počítat
+            \begin{lstlisting}
+float hypotenuse = sqrt(pow(x, 2) + pow(y, 2));
+printf("%f", hypotenuse);
+            \end{lstlisting}
+            \item $\implies$ \markgreen{využijeme tzv. \textbf{návratovou hodnotu}.}
         \end{itemize}
     \end{frame}
 
