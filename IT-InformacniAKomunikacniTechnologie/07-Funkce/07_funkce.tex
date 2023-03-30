@@ -6,8 +6,8 @@
 \input{../assets/macros.tex}
 
 % Title page
-\title{Informační a komunikační technologie}
-\subtitle{Funkce v C}
+\title{Funkce v C}
+\subtitle{Informační a komunikační technologie}
 \author{David Weber}
 \def\office{K13}
 \def\email{weber3@spsejecna.cz}
@@ -95,7 +95,7 @@ void greet(void) {
     printf("Hello World!");
 }
             \end{lstlisting}
-            \item \textbf{Důležité:} funkci musíme uvést nad \texttt{main}!
+            \item \textbf{Doporučení:} funkci uvádějte nad \texttt{main}!
             \item Samotná definice funkce nic nedělá $\implies$ \markorange{je třeba ji tzv. \textbf{zavolat}.}
         \end{itemize}
     \end{frame}
@@ -150,7 +150,7 @@ int main(void) {
     \end{frame}
 
     \begin{frame}[t,fragile]{Příklad II (funkce s více parametry)}
-        Funkce pro výpočet aritmetického průměru celých čísel $a,\,b\in\mathbb{Z}$:
+        Funkce pro výpočet aritmetického průměru celých čísel $a,\,b\in\Z$:
         \begin{lstlisting}
 void average(int a, int b) {
     float avg = (a + b) / 2;
@@ -176,7 +176,7 @@ int main(void) {
         do funkce. (Viz domácí úkol \emoji{slightly-smiling-face})
     \end{frame}
 
-    \begin{frame}[t,fragile]{Funkce s návratovou hodnotou}
+    \begin{frame}[t,fragile]{Funkce s návratovou hodnotou I}
         \begin{itemize}
             \item \textbf{Problém:} s hodnotou, kterou funkce vypočte, nemůžeme dále pracovat (pouze ji na konci vypisujeme).
             \item Např. u funkcí \texttt{pow}, \texttt{sqrt}, \dots (viz knihovna \textbf{math}) jsme mohli s vypočtenou hodnotou dále počítat
@@ -186,6 +186,85 @@ printf("%f", hypotenuse);
             \end{lstlisting}
             \item $\implies$ \markgreen{využijeme tzv. \textbf{návratovou hodnotu}.}
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Funkce s návratovou hodnotou II}
+        \begin{itemize}
+            \item Klíčové slovo \markblue{\texttt{return}}.
+            \item Před názvem funkce musíme dále uvést datový typ návratové hodnoty funkce.
+            \item Např. funkce pro výpočet faktoriálu vracející výsledek:
+            \begin{lstlisting}
+int factorial(int n) {
+    int fact = 1;
+    for (int i = 1; i <= n; i++) {
+        fact *= i;
+    }
+    return fact;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Úloha II}
+        Napište vlastní funkci pro výpočet $n$-té mocniny čísla $x\in\R$. Funkce bude přijímat parametry $x,\,n$ a bude vracet $x^n$. Nesmíte použít funkci \texttt{pow}. \emoji{upside-down-face}
+    \end{frame}
+
+    \begin{frame}[t]{Co se děje uvnitř?}
+        \begin{itemize}
+            \item Při volání funkce program vykoná její kód a následně se vrátí do místa jejího volání, odkud pokračuje.
+            \item \markred{$\implies$ jak ale ví, odkud má pokračovat? Jaké byly stavy proměnných při volání?}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{itemize}
+                    \item Program začne ve funkci \texttt{main}, kde inicializuje proměnné \texttt{a} a \texttt{b},
+                    \item při zavolání funkce \texttt{mult} je navrácena hodnota $x\cdot y$ a vrátíme se zpět do místa volání (tj. do funkce \texttt{main}),
+                    \item \markorange{$\implies$ je třeba vědět, do které části kódu se přesunout!} \markgreen{$\implies$ návratová adresa}.
+                \end{itemize}
+            \end{column}
+            
+            \begin{column}{0.41\textwidth}
+                \begin{lstlisting}
+int mult(int x, int y) {
+    return x*y;
+}
+int main(void) {
+    int a = 10;
+    int b = 47;
+    printf("%d", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+        \end{columns}
+        
+    \end{frame}
+
+    \begin{frame}[t]{Zásobník}
+        \begin{itemize}
+            \item \textbf{Návratová adresa} -- adresa v paměti, odkud má program pokračovat po skončení volané funkce.
+            \item Při volání funkce a návratu z ní se využívá tzv. \textbf{zásobník} (angl. \emph{stack}).
+            \item Do něj se ukládá (mimo jiné) \textbf{při volání funkce} \emph{návratová adresa}, \emph{předávané parametry \textbf{volané} funkce}.
+            \item Dále jsou zde ukládány i \emph{hodnoty lokálních proměnných}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Rozdělení paměti}
+        \begin{columns}[onlytextwidth,T]
+            \column{\dimexpr\linewidth-30mm-3mm}
+            \begin{itemize}
+                \item \textbf{Kód programu} -- zkompilovaný (strojový) kód programu
+                \item \textbf{Statická data} -- mají svou velikost přesně a neměně určenou v okamžiku překladu zdrojového textu (globální proměnné)
+                \item \textbf{Zásobník} -- lokální proměnné, argumenty funkcí, návratová hodnota funkce, \emph{návratová adresa}
+                \item \textbf{Halda} -- dynamická paměť, alokována za běhu programu (např. v případě pole)
+            \end{itemize}
+      
+            \column{30mm}
+            \includegraphics[width=30mm]{images/program_v_pameti.pdf}
+        \end{columns}
     \end{frame}
 
     \begin{frame}{Otázky?}
