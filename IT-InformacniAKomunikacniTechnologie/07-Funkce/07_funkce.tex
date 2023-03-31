@@ -248,7 +248,7 @@ int main(void) {
             \item \textbf{Návratová adresa} -- adresa v paměti, odkud má program pokračovat po skončení volané funkce.
             \item Při volání funkce a návratu z ní se využívá tzv. \textbf{zásobník} (angl. \emph{stack}).
             \item Do něj se ukládá (mimo jiné) \textbf{při volání funkce} \emph{návratová adresa}, \emph{předávané parametry \textbf{volané} funkce}.
-            \item Dále jsou zde ukládány i \emph{hodnoty lokálních proměnných}.
+            \item Dále jsou zde ukládány i \emph{hodnoty lokálních proměnných} při deklaraci.
         \end{itemize}
     \end{frame}
 
@@ -264,6 +264,31 @@ int main(void) {
       
             \column{30mm}
             \includegraphics[width=30mm]{images/program_v_pameti.pdf}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(int x, int y) {
+    (*\colorbox{yellow}{int c = 30;}*)
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%d", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                
+            \end{column}
         \end{columns}
     \end{frame}
 
