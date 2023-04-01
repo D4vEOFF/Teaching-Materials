@@ -25,3 +25,4 @@ Probíraná témata:
 5. Cyklus **do while** (prezentace [zde](IT/04-DodatekDoWhileCyklus/04_dodatek_k_cyklu_do_while.pdf))
 6. Ošetřování uživatelského vstupu (prezentace [zde](IT/05-OsetrovaniVstupu/05_osetrovani_vstupu.pdf))
 7. **Pole** v jazyce C a práce s ním (prezentace [zde](IT/06-PraceSPolem/06_prace_s_polem.pdf))
+8. **Funkce** v jazyce (prezentace [zde](IT/07-Funkce/07_funkce.pdf))
