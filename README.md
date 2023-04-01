@@ -26,3 +26,4 @@ Probíraná témata:
 6. Ošetřování uživatelského vstupu (prezentace [zde](IT-InformacniAKomunikacniTechnologie/05-OsetrovaniVstupu/05_osetrovani_vstupu.pdf))
 7. **Pole** v jazyce C a práce s ním (prezentace [zde](IT-InformacniAKomunikacniTechnologie/06-PraceSPolem/06_prace_s_polem.pdf))
 8. **Funkce** v jazyce C (prezentace [zde](IT-InformacniAKomunikacniTechnologie/07-Funkce/07_funkce.pdf))
+9. **Adresy a ukazatele** v jazyce C (prezentace [zde](IT-InformacniAKomunikacniTechnologie/08-AdresyAUkazatele/08_adresy_a_ukazatele.tex))
