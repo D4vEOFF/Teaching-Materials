@@ -10,6 +10,11 @@
 \definecolor{darkred}{HTML}{AF0B0B}
 \definecolor{lightred}{HTML}{FF5100}
 \definecolor{orange}{HTML}{FFE000}
+\definecolor{codeblue}{HTML}{FF0055}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codebeige}{HTML}{D4A000}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
 
 \newcommand{\markred}[1]{\textcolor{lightred}{#1}}
 \newcommand{\markgreen}[1]{\textcolor{lightgreen}{#1}}
@@ -33,3 +38,26 @@
 \newcommand{\N}{\mathbb{N}}
 \newcommand{\Z}{\mathbb{Z}}
 \newcommand{\Q}{\mathbb{Q}}
+
+% Code
+\lstdefinestyle{clang}{
+    basicstyle=\small\ttfamily\color{white},
+    language=C,
+    keywordstyle=\color{codeblue},
+    commentstyle=\color{codegreen},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codebeige},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    morekeywords={void,int,double,float,unsigned,if,else,\#include}
+    tabsize=0.5
+}
+\lstset{escapeinside={(*}{*)},style=clang}
+
+\newcommand{\hlcode}[1]{\colorbox{red}{#1}}

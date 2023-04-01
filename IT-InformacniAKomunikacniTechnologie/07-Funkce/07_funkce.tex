@@ -234,7 +234,7 @@ int mult(int x, int y) {
 int main(void) {
     int a = 10;
     int b = 47;
-    printf("%d", mult(a, b));
+    printf("%f", mult(a, b));
     return 0;
 }
                 \end{lstlisting}
@@ -274,20 +274,275 @@ int main(void) {
 float sqr(float x) {
     return x*x;
 }
-float mult(int x, int y) {
-    (*\colorbox{yellow}{int c = 30;}*)
+float mult(float x, float y) {
+    int c = 30;
     return c*sqr(x)*sqr(y);
 }
 int main(void) {
-    int a = 20;
+    (*\hlcode{int a = 20;}*)
     float b = 23.5f;
-    printf("%d", mult(a, b));
+    printf("%f", mult(a, b));
     return 0;
 }
                 \end{lstlisting}
             \end{column}
             \begin{column}{0.4\textwidth}
-                
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_1.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    (*\hlcode{float b = 23.5f;}*)
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_2.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", (*\hlcode{mult(a, b)}*));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_3.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    (*\hlcode{int c = 30;}*)
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_5.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*(*\hlcode{sqr(x)}*)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_6.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    (*\hlcode{return x*x;}*)
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_7.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*(*\hlcode{sqr(y)}*);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_8.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    (*\hlcode{return x*x;}*)
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_9.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    (*\hlcode{return c*sqr(x)*sqr(y);}*)
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    return 0;
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_10.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad (stav zásobníku)}
+        \begin{columns}[onlytextwidth]
+            \begin{column}{0.55\textwidth}
+                \begin{lstlisting}
+float sqr(float x) {
+    return x*x;
+}
+float mult(float x, float y) {
+    int c = 30;
+    return c*sqr(x)*sqr(y);
+}
+int main(void) {
+    int a = 20;
+    float b = 23.5f;
+    printf("%f", mult(a, b));
+    (*\hlcode{return 0;}*)
+}
+                \end{lstlisting}
+            \end{column}
+            \begin{column}{0.4\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{images/zasobnik_stav_11.pdf}
+                \end{figure}
             \end{column}
         \end{columns}
     \end{frame}
