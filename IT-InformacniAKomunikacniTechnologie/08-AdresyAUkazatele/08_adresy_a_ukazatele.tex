@@ -22,7 +22,78 @@
         \titlepage
     \end{frame}
 
-    %%% TODO: Content
+    \begin{frame}[t]{Připomenutí}
+        \begin{itemize}
+            \item Jaký je rozdíl mezi \emph{adresou} a \emph{hodnotou} proměnné?
+            \begin{itemize}
+                \item \textbf{Hodnota} -- hodnota uložená v paměťové buňce proměnné
+                \item \textbf{Adresa} -- číslo paměťové buňky proměnné
+            \end{itemize}
+            \item Pro výpis jsme používali znak \texttt{\&}.
+        \end{itemize}
+        \begin{figure}
+            \centering
+            \includegraphics{images/memory_variable.pdf}
+        \end{figure}
+        \begin{itemize}
+            \item Předpona \texttt{0x} značí číslo zapsané \textbf{hexadecimálně} (v C, ale i jiných jazycích).
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Příklad na úvod I}
+        Mějme program obsahující funkci pro prohození hodnot proměnných \texttt{u} a \texttt{v}.
+        \begin{lstlisting}
+void swap(int u, int v) {
+    int temp = u;
+    u = v;
+    v = temp;
+}
+int main(void) {
+    int a = 5;
+    int b = 10;
+    swap(a, b);
+    printf("Hodnoty a, b: %d, %d", &a, &b);
+    return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t]{Příklad na úvod II}
+        Jaký bude výstup předešlého programu?
+        \begin{enumerate}[label=(\alph*)]
+            \item \texttt{Hodnoty a, b: 5, 10}
+            \only<1>{\item \texttt{Hodnoty a, b: 10, 5}}
+            \only<2->{\item \markgreen{\texttt{Hodnoty a, b: 10, 5}}}
+        \end{enumerate}
+        \only<3->{\markred{$\implies$ nijak jsme si nepomohli \emoji{crying-face}}}
+    \end{frame}
+
+    \begin{frame}[t]{V čem je problém?}
+        \begin{itemize}
+            \item Parametry funkci předáváme tzv. \textbf{hodnotou}.
+            \begin{itemize}
+                \item Hodnoty proměnných \texttt{a} a \texttt{b} jsou zkopírovány a při volání funkce \texttt{swap} jsou nově \emph{na zásobníku} deklarovány proměnné \texttt{u} a \texttt{v}.
+                \item \markred{$\implies$ funkce v konečném důsledku prohodí hodnoty proměnných \texttt{u} a \texttt{v}, nikoliv \texttt{a} a \texttt{b}}
+            \end{itemize}
+            \item \markgreen{$\implies$ mohli bychom vyřešit předáním ``odkazů'' na původní proměnné.}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Ukazatel (pointer)}
+        \begin{itemize}
+            \item \textbf{Datový typ} uchovávající adresu v paměti \textbf{určitého datového typu} (existují i generické ukazatele, ale ty nebudeme řešit \emoji{slightly-smiling-face}).
+            \item Při deklaraci je třeba uvést datový typ (tím kompilátoru říkáme, jak se má interpretovat místo v paměti, kam ukazuje ), jehož adresu ukazatel uchovává, a znak \texttt{*} (pro odlišení od deklarace standardní proměnné).
+            \item Jedná se vždy o \textbf{kladné celé číslo} (formátová specifikace \texttt{\%p}).
+            \begin{lstlisting}
+int main(void) {
+    int x = 50;
+    int *px = &x;
+    printf("Hodnota x: %d\nAdresa x: %p", x, px);
+    return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
 
     \begin{frame}{Otázky?}
         \begin{figure}
