@@ -52,7 +52,7 @@ int main(void) {
     int a = 5;
     int b = 10;
     swap(a, b);
-    printf("Hodnoty a, b: %d, %d", &a, &b);
+    printf("Hodnoty a, b: %d, %d", a, b);
     return 0;
 }
         \end{lstlisting}
@@ -72,7 +72,7 @@ int main(void) {
         \begin{itemize}
             \item Parametry funkci předáváme tzv. \textbf{hodnotou}.
             \begin{itemize}
-                \item Hodnoty proměnných \texttt{a} a \texttt{b} jsou zkopírovány a při volání funkce \texttt{swap} jsou nově \emph{na zásobníku} deklarovány proměnné \texttt{u} a \texttt{v}.
+                \item Hodnoty proměnných \texttt{a} a \texttt{b} jsou zkopírovány a při volání funkce \texttt{swap} jsou nově \emph{na zásobníku} deklarovány proměnné \texttt{u} ~a \texttt{v}.
                 \item \markred{$\implies$ funkce v konečném důsledku prohodí hodnoty proměnných \texttt{u} a \texttt{v}, nikoliv \texttt{a} a \texttt{b}}
             \end{itemize}
             \item \markgreen{$\implies$ mohli bychom vyřešit předáním ``odkazů'' na původní proměnné.}
@@ -93,6 +93,42 @@ int main(void) {
 }
             \end{lstlisting}
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Dereference}
+        \begin{itemize}
+            \item Ekvivalentně lze deklaraci ukazatele zápisem \texttt{int* p} (mezera mezi \texttt{*} a \texttt{p}).
+            \item Co když máme adresu, ale ne samotnou proměnnou? $\implies$ \markgreen{využijeme tzv. \textbf{operátor dereference} \texttt{*}.}
+            \begin{itemize}
+                \item Umožňuje nám odkázat se přímo na \textbf{hodnotu} v paměťové buňce ležící na \textbf{adrese ukazatele}.
+            \end{itemize}
+            \begin{lstlisting}
+int main(void) {
+    int i = 50;
+    int *p = &i;
+    *p = 100;           // same as i = 100;
+    printf("%d", i);    // prints out "100"
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Otázka}
+        Jak bychom měli upravit původní program, aby fungoval?
+        \begin{lstlisting}
+void swap(int u, int v) {
+    int temp = u;
+    u = v;
+    v = temp;
+}
+int main(void) {
+    int a = 5;
+    int b = 10;
+    swap(a, b);
+    printf("Hodnoty a, b: %d, %d", a, b);
+    return 0;
+}
+        \end{lstlisting}
     \end{frame}
 
     \begin{frame}{Otázky?}
