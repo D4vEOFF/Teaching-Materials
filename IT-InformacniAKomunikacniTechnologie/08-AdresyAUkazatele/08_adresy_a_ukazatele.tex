@@ -79,10 +79,10 @@ int main(void) {
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Ukazatel (pointer)}
+    \begin{frame}[t,fragile]{Ukazatel (pointer) I}
         \begin{itemize}
             \item \textbf{Datový typ} uchovávající adresu v paměti \textbf{určitého datového typu} (existují i generické ukazatele, ale ty nebudeme řešit \emoji{slightly-smiling-face}).
-            \item Při deklaraci je třeba uvést datový typ (tím kompilátoru říkáme, jak se má interpretovat místo v paměti, kam ukazuje ), jehož adresu ukazatel uchovává, a znak \texttt{*} (pro odlišení od deklarace standardní proměnné).
+            \item Při deklaraci je třeba uvést datový typ hodnoty (tím kompilátoru říkáme, jak se má interpretovat místo v paměti, kam ukazuje ), jejíž adresu ukazatel uchovává, a znak \texttt{*} (pro odlišení od deklarace standardní proměnné).
             \item Jedná se vždy o \textbf{kladné celé číslo} (formátová specifikace \texttt{\%p}).
             \begin{lstlisting}
 int main(void) {
@@ -93,6 +93,13 @@ int main(void) {
 }
             \end{lstlisting}
         \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Ukazatel (pointer) II}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.75]{images/pointer_to_variable.pdf}
+        \end{figure}
     \end{frame}
 
     \begin{frame}[t,fragile]{Dereference}
@@ -108,12 +115,13 @@ int main(void) {
     int *p = &i;
     *p = 100;           // same as i = 100;
     printf("%d", i);    // prints out "100"
+    return 0;
 }
             \end{lstlisting}
         \end{itemize}
     \end{frame}
 
-    \begin{frame}[t,fragile]{Otázka}
+    \begin{frame}[t,fragile]{Původní problém}
         Jak bychom měli upravit původní program, aby fungoval?
         \begin{lstlisting}
 void swap(int u, int v) {
@@ -127,6 +135,115 @@ int main(void) {
     swap(a, b);
     printf("Hodnoty a, b: %d, %d", a, b);
     return 0;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Řešení}
+        \begin{itemize}
+            \item Je potřeba předat funkci \texttt{swap} adresu proměnných \texttt{a} a \texttt{b} (tzv. předání \textbf{referencí}).
+            \item Uvnitř těla funkce pak provedeme dereferenci ukazatelů.
+            \begin{lstlisting}
+void swap(int *u, int *v) {
+    int temp = *u;
+    *u = *v;
+    *v = temp;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Pole a ukazatele I}
+        \begin{itemize}
+            \item Již jsme si zmínili, že pole je struktura uchovávající více prvků \textbf{stejného datového typu}.
+            \item Na jednotlivé buňky pole jsme se při načítání hodnot z konzole odkazovali pomocí jejich adresy v paměti.
+            \begin{lstlisting}
+int arr[10];
+for (int i = 0; i < 10; i++) {
+    if (scanf("%d", &arr[i]) < 1) {
+        printf("ERROR.");
+        return -1;
+    }
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Pole a ukazatele II}
+        \begin{itemize}
+            \item Samotný "výraz" \texttt{arr} jsme používali (zatím) vždy pouze s indexem při odkazování na konkrétní prvek (např. \texttt{arr[i]}).
+            \item Co ovšem představuje sám o sobě? \markorange{$\implies$ ukazatel na počátek pole! (Tzn. prvek na nultém indexu.)}
+            \begin{lstlisting}
+int main() {
+    int arr[] = { 1, 2, 3 };
+
+    // arr and &arr[0] are identical
+    printf("%p %p", arr, &arr[0]);
+    return 0;
+}
+            \end{lstlisting}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[fragile]{Příklad (hledání prvku v poli) I}
+        \begin{lstlisting}
+unsigned int getElementIndex(int arr[], int size, int element) {
+    for (int i = 0; i < size; i++) {
+        if (arr[i] == element)
+            return i;
+    }
+    return -1;
+}
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t]{Příklad (hledání prvku v poli) II}
+        \begin{itemize}
+            \item Funkce \texttt{getElementIndex} přijímá jako parametr pole \texttt{arr}, které je předáváno \textbf{referencí}.
+            \item \markred{Předávání hodnotou by mohl být problém, neboť pro velké struktury (řádově např. statisíce prvků) bychom museli všechny prvky kopírovat.}
+            \item Lze též psát \texttt{int* arr}.
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Pole a ukazatele III}
+        \begin{lstlisting}
+int main(void) {
+    int arr[5];
+    int *p = arr;
+    printf("%p, %p", sizeof(arr), sizeof(p));
+    return 0;
+}
+        \end{lstlisting}
+        \begin{itemize}
+            \item Je dobré si uvědomit, že byť \texttt{arr} ukazuje na počátek pole, přesto je zde rozdíl oproti ukazateli \texttt{p}.
+            \item \markred{$\implies$ \texttt{sizeof(arr)} vypíše velikost pole \texttt{arr} v bytech, zatímco \texttt{sizeof(p)} vypíše velikost ukazatele \texttt{p}!}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}[t]{Aritmetika s ukazateli I}
+        \begin{itemize}
+            \item Ukazatele jsou číselné proměnné $\implies$ lze s nimi manipulovat pomocí $+,\,-$.
+            \item Nelze např. sčítat/odčítat dvojici ukazatelů, tj. \texttt{p1 + p2}
+            \item Lze psát např. \texttt{p++}, \texttt{p--}, \texttt{p -= 4}, \dots
+            \item \markorange{\textbf{Inkrementace}, resp. \textbf{dekrementace} probíhá vždy o násobky velikosti datového typu, na který ukazatel ukazuje (nikoliv přímo o danou hodnotu)!}
+        \end{itemize}
+    \end{frame}
+
+    \begin{frame}{Aritmetika s ukazateli II}
+        \begin{figure}
+            \centering
+            \includegraphics{images/pointer_arith.pdf}
+        \end{figure}
+    \end{frame}
+
+    \begin{frame}[fragile]{Příklad}
+        Výpis prvků pole.
+        \begin{lstlisting}
+void printArray(int arr[], unsigned int size) {
+    int *p = arr;       // First element address
+    for (int i = 0; i < size; i++) {
+        printf("%d", *(p+i));
+    }
 }
         \end{lstlisting}
     \end{frame}
