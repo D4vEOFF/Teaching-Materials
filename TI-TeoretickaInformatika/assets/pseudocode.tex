@@ -1,4 +1,5 @@
 \usepackage{xparse}
+\usepackage{lineno}
 
 \newcommand{\codeindent}{0.7cm}
 \newcounter{algcounter}
@@ -13,13 +14,13 @@
   \bigskip\noindent
   \refstepcounter{algcounter}
   
-  \noindent\textbf{Algoritmus \thealgcounter} (#1)\\
-  \fontfamily{qcr}\selectfont
-  \textbf{Vstup:} #2\\
+  \noindent\textbf{Algoritmus \thealgcounter} (\textsc{#1})\\
+%   \fontfamily{qcr}\selectfont
+  \textit{Vstup:} #2\\
   \hspace*{\codeindent}
   \begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par
-\noindent \textbf{Výstup:} #3\\
+\noindent \textit{Výstup:} #3\\
 \bigskip}
 
 % Příkazy

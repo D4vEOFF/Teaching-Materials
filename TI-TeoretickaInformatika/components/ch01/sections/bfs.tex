@@ -1,1 +1,32 @@
 \section{Prohledávání do šířky}\label{sec:bfs}
+
+Jednou ze základních úloh je procházení grafu z určitého vrcholu a zjištění dosažitelnosti ostatních vrcholů. Nejednodušším algoritmem v tomto ohledu je tzv. \emph{prohledávání do šířky} (angl. \emph{breadth-first search}, zkráceně BFS). Jeho základní princip spočívá v postupném objevování následníků již nalezených vrcholů. Na počátku dostaneme graf $G=(V,E)$ a nějaký počáteční vrchol $v_0\in V$. Postupně objevíme všechny sousedy vrcholu $v_0$, poté všechny sousedy těchto nalezených sousedů, atd. Na BFS lze nahlížet tak, že do počátečního vrcholu nalijeme vodu a sledujeme, jak postupuje vzniklá vlna.
+
+Pro každý vrchol si budeme uchovávat jeho \emph{stav}.
+\begin{itemize}
+    \item \emph{Nenalezený} -- vrchol jsme ještě během výpočtu neviděli.
+    \item \emph{Otevřený} -- vrchol jsme viděli, ale ještě nejsme neprozkoumali všechny jeho sousedy.
+    \item \emph{Uzavřený} -- vrchol jsme prozkoumali společně se všemi jeho sousedy a dál se jím již netřeba zabývat.
+\end{itemize}
+Na počátku začneme s jedním otevřeným vrcholem a to $v_0$ (zde začínáme). Po prozkoumání všech sousedních vrcholů se jejich stav změní na otevřený a počáteční vrchol $v_0$ se uzavře. Obdobně pokračujeme pro nově otevřené vrcholy. Pokud by náhodou mezi dvojicí otevřených vrcholů existovala hrana, pak si sousedního vrcholu všímat nebudeme, neboť byl již otevřen. Pro každý vrchol se ještě dodatečně můžeme uchovávat informaci, jak daleko se nachází od $v_0$, co do počtu hran ležících na cestě.
+
+\begin{pseudo}{BFS}{Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.}{Seznam vzdáleností $D$.}
+    \begin{For}{každý vrchol $v\in V$}
+        $stav(v)\leftarrow$ \textit{nenalezený}\\
+        $D(v)\leftarrow\infty$
+    \end{For}
+    $stav(v_0)\leftarrow$ \textit{otevřený}\\
+    $D(v_0)\leftarrow 0$\\
+    Založ frontu $Q$ a přidej do ní vrchol $v_0$\\
+    \begin{While}{je fronta $Q$ neprázdná}
+        $v\leftarrow$ první vrchol ve frontě $Q$, který z ní odebereme\\
+        \begin{For}{každý sousední vrchol $w$ vrcholu $v$}
+            \begin{If}{$stav(w)=$ \textit{nenalezený}}
+                $stav(w)\leftarrow$ \textit{otevřený}\\
+                $D(w)\leftarrow D(v)+1$\\
+                Přidej $w$ do fronty $Q$
+            \end{If}
+        \end{For}
+        $stav(v)\leftarrow$ \textit{uzavřený}
+    \end{While}
+\end{pseudo}
