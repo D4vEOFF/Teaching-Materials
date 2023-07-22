@@ -1,0 +1,92 @@
+\newcommand{\chapwithtoc}[1]{           %% Unumbered chapter included in TOC
+  \chapter*{#1}
+  \addcontentsline{toc}{chapter}{#1}
+}
+
+\newenvironment{sol}{
+  \par\medskip\noindent
+  \textit{Řešení}.
+}{}
+
+\MakeOuterQuote{"}
+
+\newcommand{\topindent}{3mm}
+
+\newtheorem{thm}[algcounter]{Věta}
+\newtheorem{lem}[algcounter]{Lemma}
+\newtheorem{stm}[algcounter]{Tvrzení}
+\newtheorem{cor}[algcounter]{Důsledek}
+
+\theoremstyle{definition}
+\newtheorem{definition}[algcounter]{Definice}
+\newtheorem*{definition*}{Definice}
+\newtheorem{remark}[algcounter]{Poznámka}
+\newtheorem*{remark*}{Poznámka}
+\newtheorem*{symboldef}{Značení}
+\newtheorem{example}[algcounter]{Příklad}
+\newtheorem*{example*}{Příklad}
+
+% Enumerate
+\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=\arabic*.}
+
+% Itemize
+\setlist[itemize]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
+
+% Align algorithm numbering with theorems
+\counterwithin*{algcounter}{section}
+\counterwithin*{algcounter}{subsection}
+
+% Math
+\newcommand{\powset}[1]{\mathcal{P}(#1)}
+\newcommand{\solutions}[1]{\left[K=\left\{#1\right\}\right]}
+\newcommand{\set}[1]{\left\{#1\right\}}
+\newcommand{\sizeof}[1]{\left| #1 \right|}
+\newcommand{\admid}{\;\middle\vert\;}
+
+% Paths
+\newcommand{\chapterspath}[1]{components/ch#1/content.tex}
+\newcommand{\sectionspath}[1]{components/ch#1/sections}
+
+% Info boxes
+\newcommand{\infobox}[1]{\awesomebox[gray]{2pt}{\faInfoCircle}{gray}{\textcolor{gray}{#1}}}
+
+%hyperref
+\hypersetup{
+    colorlinks=true,
+    urlcolor=black,
+    bookmarksopen=true
+}
+
+% Parindent
+\setlength{\parindent}{0em}
+\setlength{\parskip}{1em}
+
+% Logical operators
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\iff}{\Leftrightarrow}
+
+\newcommand{\abs}[1]{\left|\,#1\,\right|}
+
+%%% Prostor reálných čísel, přirozených čísel, ...
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Q}{\mathbb{Q}}
+\newcommand{\Z}{\mathbb{Z}}
+
+% Goniometric functions
+\DeclareMathOperator{\tg}{tg}
+\DeclareMathOperator{\cotg}{cotg}
+
+% Others
+\newcommand{\rightnote}[1]{\hspace*{\fill} $\triangleleft$ \textit{#1}}
+\newcommand{\bloom}[2]{
+  \footnotesize{
+    \begin{minipage}[t]{\linewidth}
+      \raggedright\textbf{Dimenze poznatků:} #1\\
+      \raggedright\textbf{Kognitivní proces:} #2
+    \end{minipage}
+  }\normalsize
+}
+
+\newcommand{\degre}{\ensuremath{^\circ}}

@@ -1,0 +1,73 @@
+\usepackage{xparse}
+
+\newcommand{\codeindent}{0.7cm}
+\newcounter{algcounter}
+
+\renewcommand{\thealgcounter}{%
+  \thesection.%
+  \ifnum\value{subsection}>0 \arabic{subsection}.\fi
+  \arabic{algcounter}%
+}
+
+\NewDocumentEnvironment{pseudo}{mmm}{
+  \bigskip\noindent
+  \refstepcounter{algcounter}
+  
+  \noindent\textbf{Algoritmus \thealgcounter} (#1)\\
+  \fontfamily{qcr}\selectfont
+  \textbf{Vstup:} #2\\
+  \hspace*{\codeindent}
+  \begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par
+\noindent \textbf{Výstup:} #3\\
+\bigskip}
+
+% Příkazy
+
+\newcommand{\Print}[1]{\textbf{Vytiskni} #1}
+\newcommand{\Return}[1]{\textbf{Vrať} #1}
+
+% Podmínky
+\newenvironment{If}[1]{
+	\noindent
+	\textbf{Pokud} #1, \textbf{proveď}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}
+
+\newenvironment{ElseIf}[1]{
+	\noindent
+	\textbf{Jinak pokud} #1, \textbf{proveď}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}
+
+\newenvironment{Else}{
+	\noindent
+	\textbf{Jinak proveď}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}
+
+% Cykly
+\NewDocumentEnvironment{While}{m}{
+	\noindent
+	\textbf{Dokud} #1, \textbf{opakuj}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}
+
+\NewDocumentEnvironment{DoWhile}{m}{
+	\noindent
+	\textbf{proveď}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par
+\textbf{Dokud} #1, \textbf{opakuj}\par}
+
+\NewDocumentEnvironment{For}{m}{
+	\noindent
+	\textbf{Pro} #1 \textbf{opakuj}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}

@@ -1,0 +1,42 @@
+\documentclass[11pt,a4paper,oneside]{book}
+
+\input{assets/packages.tex}
+
+% Indentation
+\newcommand{\hmargin}{18mm}
+\newcommand{\vmargin}{25mm}
+
+% Image sizing
+\newcommand{\imgwidthpercent}{.75}
+\newcommand{\imagespacing}{3em}
+\newcommand{\cubewidth}{.4\textwidth}
+\newcommand{\dotswidth}{.5\textwidth}
+\newcommand{\dotsscale}{1.8}
+
+\graphicspath{{./components/images/}}
+
+% Assets
+\input{assets/geometry.tex}
+\input{assets/pseudocode.tex}
+\input{assets/macros.tex}
+
+% Title page info
+\def\maintitle{Teoretická informatika}
+\def\subtitle{Obor C, 3. ročník}
+\def\authorname{David Weber}
+\def\currentdate{\today}
+\def\institution{SPŠE Ječná}
+
+\begin{document}
+
+% Title page
+\include{components/titlepage.tex}
+
+\tableofcontents
+
+\include{components/foreword}
+
+\include{components/ch01/grafove_algoritmy}
+\include{components/ch02/dyn_prog}
+
+\end{document}
