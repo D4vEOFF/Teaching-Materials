@@ -42,7 +42,7 @@ BFS rozděluje vrcholy do vrstev podle toho, v jaké vzdálenosti od počátečn
 \end{figure}
 
 Zbývá prozkoumat časovou a paměťovou složitost BFS. Označme si počet vrcholů grafu $G$ na vstupu $n$ a počet jeho hran $m$. 
-\begin{theorem}[Složitost BFS]
+\begin{theorem}[Složitost BFS]\label{thm:bfs_slozitost}
     Algoritmus BFS doběhne v čase $\bigO{n+m}$ a spotřebuje paměť $\bigO{n+m}$.
 \end{theorem}
 \begin{proof}
@@ -50,11 +50,16 @@ Zbývá prozkoumat časovou a paměťovou složitost BFS. Označme si počet vrc
 
     S vnitřním cyklem je to trochu složitější, protože jeho počet iterací závisí na tom, který z vrcholů otevíráme (resp. na počtu jeho sousedů). To znamená, že pokud si označíme $d_i$ počet sousedů vrcholu $i$, pak celkový počet iterací vnitřního cyklu přes všechny vrcholy bude $\sum_i{d_i}$. Lze si ovšem všimnout jedné užitečné věci. Pokaždé, když prozkoumáváme sousední vrchol $w$ nějakého vrcholu $v$, mohou nastat dva případy podle toho, jestli je $G$ orientovaný graf, nebo neorientovaný.
     \begin{enumerate}[label=(\roman*)]
-        \item Graf $G$ je neorientovaný. Pak hranu, která spojuje $v$ a $w$ prozkoumáme právě \emph{dvakrát} (jednou z vrcholu $v$ a podruhé z vrcholu $w$). Každá hrana se tak započítá dvakrát, tzn. vnitřní cyklus se celkově provede max $2m$-krát (po všech iteracích vnějšího cyklu).
-        \item Graf $G$ je orientovaný. Pak se hrana započítá pouze jednou, a to z vrcholu, z něhož vede. Celkově se vnitřní cyklus provede $m$-krát.
+        \item\label{bfs_slozitost_neor_graf} Graf $G$ je neorientovaný. Pak hranu, která spojuje $v$ a $w$ prozkoumáme právě \emph{dvakrát} (jednou z vrcholu $v$ a podruhé z vrcholu $w$). Každá hrana se tak započítá dvakrát, tzn. vnitřní cyklus se celkově provede max $2m$-krát (po všech iteracích vnějšího cyklu).
+        \item\label{bfs_slozitost_or_graf} Graf $G$ je orientovaný. Pak se hrana započítá pouze jednou, a to z vrcholu, z něhož vede. Celkově se vnitřní cyklus provede $m$-krát.
     \end{enumerate}
     V prvním případě tak pro časovou složitost bude platit
     \[\bigO{n+\sum_i{d_i}}=\bigO{n+2m}=\bigO{n+m}.\]
     V druhém případě dojdeme ke stejnému výsledku, akorát zmíněná suma bude, kvůli orientaci hran, rovna přesně počtu hran, tj.
     \[\bigO{n+\sum_i{d_i}}=\bigO{n+m}.\]
 \end{proof}
+\begin{figure}[h]
+    \centering
+    \includegraphics{ch01_zapocitavani_hran.pdf}
+    \caption{Znázornění situace v důkazu části \ref{bfs_slozitost_neor_graf} věty \ref{thm:bfs_slozitost}.}
+\end{figure}
