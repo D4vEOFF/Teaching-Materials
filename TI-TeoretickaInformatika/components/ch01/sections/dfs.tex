@@ -26,3 +26,9 @@ Na podobném přístupu, jako BFS, je založeno tzv. \emph{prohledávání do hl
 
     V paměti si musíme uchovávat reprezentaci grafu, to zabere $\bigO{n+m}$ paměti (opět např. pomocí seznamu sousedů) a máme seznam $stav$ s $n$ prvky (vrcholy). Zároveň si při volání \textsc{DFS2} musíme na zásobník rekurze ukládat jednotlivé \emph{aktivační záznamy}. Protože vrcholů je v grafu $n$, pak na zásobníku rekurze bude v jednu chvíli maximálně $n$ záznamů, tj. $\bigO{n}$. Celkově spotřebujeme $\bigO{n+m}+\bigO{n}+\bigO{n}=\bigO{n+m}$ paměti.
 \end{proof}
+\begin{remark}
+    \begin{itemize}
+        \item Je dobré si uvědomit, že byť algoritmy BFS a DFS mají stejnou časovou a prostorovou složitost, nelze zcela rovnocenně použít na stejné typy úloh. Např. BFS se hodí pro hledání nejkratší cesty v neohodnoceném grafu (pro ohodnocené grafy se používá např. Dijkstrův algoritmus), kdežto DFS se více hodí na prohledávání stavového prostoru, neboť typicky nezabere tolik paměti.
+        \item Cesta, kterou se DFS dostane do libovolného vrcholu $v$, nemusí být nutně nejkratší (silně závisí na pořadí, v jakém procházíme sousedy jednotlivých vrcholů). 
+    \end{itemize}
+\end{remark}
