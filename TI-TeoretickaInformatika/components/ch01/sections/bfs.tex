@@ -13,23 +13,23 @@ Na počátku začneme s jedním otevřeným vrcholem a to $v_0$ (zde začínáme
 \begin{pseudo}{BFS}[Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.][Seznam vzdáleností $D$.]
     \Comment{Inicializace}
     \begin{For}{každý vrchol $v\in V$}
-        $stav(v)\leftarrow$ \textit{nenalezený}\\
-        $D(v)\leftarrow\infty$
+        $stav(v)\gets$ \textit{nenalezený}\\
+        $D(v)\gets\infty$
     \end{For}
-    $stav(v_0)\leftarrow$ \textit{otevřený}\\
-    $D(v_0)\leftarrow 0$\\\\
+    $stav(v_0)\gets$ \textit{otevřený}\\
+    $D(v_0)\gets 0$\\\\
     Založ frontu $Q$ a přidej do ní vrchol $v_0$\\
     \begin{While}{je fronta $Q$ neprázdná}
-        $v\leftarrow$ první vrchol ve frontě $Q$, který z ní odebereme\\\\
+        $v\gets$ první vrchol ve frontě $Q$, který z ní odebereme\\\\
         \Comment{Prozkomáváme všechny dosud neobjevené sousedy}
         \begin{For}{každý sousední vrchol $w$ vrcholu $v$}
             \begin{If}{$stav(w)=$ \textit{nenalezený}}
-                $stav(w)\leftarrow$ \textit{otevřený}\\
-                $D(w)\leftarrow D(v)+1$\\
+                $stav(w)\gets$ \textit{otevřený}\\
+                $D(w)\gets D(v)+1$\\
                 Přidej $w$ do fronty $Q$
             \end{If}
         \end{For}
-        $stav(v)\leftarrow$ \textit{uzavřený}
+        $stav(v)\gets$ \textit{uzavřený}
     \end{While}
 \end{pseudo}
 
@@ -57,6 +57,10 @@ Zbývá prozkoumat časovou a paměťovou složitost BFS. Označme si počet vrc
     \[\bigO{n+\sum_i{d_i}}=\bigO{n+2m}=\bigO{n+m}.\]
     V druhém případě dojdeme ke stejnému výsledku, akorát zmíněná suma bude, kvůli orientaci hran, rovna přesně počtu hran, tj.
     \[\bigO{n+\sum_i{d_i}}=\bigO{n+m}.\]
+
+    Nyní k prostorové složitosti algoritmu. Na reprezentaci grafu (např. pomocí seznamu sousedů) spotřebujeme paměť $\bigO{n+m}$ ($n$ vrcholů, $m$ hran)\footnote{Resp. každá hrana je v neorientovaných grafech započítána dvakrát, protože každý vrchol obsahuje v seznamu svých sousedů vždy "protější" vrchol (stejný argument, jako u odvozování časové složitosti BFS).}. Dále si uchováváme vrcholy ve frontě, v níž může být v jednu chvíli maximálně $n$ vrcholů, tj. $\bigO{n}$, a k tomu máme seznam $stav$, kde je uloženo $\bigO{n}$ vrcholů. Celkově spotřebujeme paměti
+    \[\bigO{n+m}+\bigO{n}+\bigO{n}=\bigO{n+m}.\]
+
 \end{proof}
 \begin{figure}[h]
     \centering

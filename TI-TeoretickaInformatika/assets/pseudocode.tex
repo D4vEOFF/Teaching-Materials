@@ -1,5 +1,4 @@
 \usepackage{xparse}
-\usepackage{lineno}
 
 \newcommand{\codeindent}{0.7cm}
 \newcounter{algcounter}
@@ -25,7 +24,7 @@
 }
 
 % Příkazy
-\newcommand{\Comment}[1]{{\fontfamily{qcr}\selectfont// #1}\\}
+\newcommand{\Comment}[1]{{\fontfamily{qcr}\selectfont\textcolor{green}{// #1}}\\}
 \newcommand{\Print}[1]{\textbf{Vytiskni} #1\\}
 \newcommand{\Return}[1]{\textbf{Vrať} #1\\}
 
@@ -75,9 +74,9 @@
 }{\end{minipage}\par}
 
 % Funkce
-\NewDocumentEnvironment{Funkce}{m}{
+\NewDocumentEnvironment{Function}{mo}{
 	\noindent
-	\textbf{Funkce}(#1)\\
+	\textbf{Funkce} \textsc{#1} \IfNoValueF{#2}{(#2)}\\
 	\hspace*{\codeindent}
   	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par}
