@@ -10,17 +10,19 @@
   \arabic{algcounter}%
 }
 
-\NewDocumentEnvironment{pseudo}{mmm}{
-  \bigskip\noindent
-  \refstepcounter{algcounter}
-  
-  \noindent\textbf{Algoritmus \thealgcounter} (\textsc{#1})\\
-%   \fontfamily{qcr}\selectfont
-  \textit{Vstup:} #2\\
-  \hspace*{\codeindent}
-  \begin{minipage}{\dimexpr\columnwidth-\codeindent}
+\NewDocumentEnvironment{pseudo}{moo}{
+	\bigskip\noindent
+	\refstepcounter{algcounter}
+	
+	\noindent\textbf{Algoritmus \thealgcounter} (\textsc{#1})\\
+	% \fontfamily{qcr}\selectfont
+	\IfNoValueF{#2}{\textit{Vstup:} #2\\}
+	\hspace*{\codeindent}
+	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par
-\noindent \textit{Výstup:} #3}
+\noindent
+\IfNoValueF{#3}{\textit{Výstup:} #3\\}
+}
 
 % Příkazy
 \newcommand{\Comment}[1]{{\fontfamily{qcr}\selectfont// #1}\\}
@@ -68,6 +70,14 @@
 \NewDocumentEnvironment{For}{m}{
 	\noindent
 	\textbf{Pro} #1 \textbf{opakuj}:\\
+	\hspace*{\codeindent}
+  	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+}{\end{minipage}\par}
+
+% Funkce
+\NewDocumentEnvironment{Funkce}{m}{
+	\noindent
+	\textbf{Funkce}(#1)\\
 	\hspace*{\codeindent}
   	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par}
