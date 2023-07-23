@@ -1,1 +1,19 @@
 \section{Binární halda}\label{sec:halda}
+
+Uveďme motivační příklad na úvod. Mějme seznam čísel, z něhož chceme (pokud možno co nejrychleji) vybrat minimální/maximální hodnotu. Pro maximum bychom sestavit následující jednoduchý algoritmus.
+\begin{pseudo}{Max}[Seznam čísel $x_1,x_2,\dots,x_n$][Maximální hodnota seznamu \textit{max}]
+    $max\gets x_1$\\
+    \begin{For}{$i=1,2,\dots,n$}
+        \begin{If}{$x_i>max$}
+            $max\gets x_i$
+        \end{If}
+    \end{For}
+\end{pseudo}
+Časová složitost bude zjevně $\bigO{n}$, neboť algoritmus prochází všech $n$ prvků. Takovou úlohu lze však řešit rychleji, pokud si prvky vhodně uspořádáme. K tomu můžeme použít tzv. \emph{haldu}. 
+\begin{definition}[Minimová binární halda]
+    Minimová binární halda je datová struktura tvaru binárního stromu, kde v každém vrcholu je uložena \emph{právě jedna} hodnota (tzv. \emph{klíč}, pro vrchol $v$ budeme značit jeho klíč $k(v)$) a navíc platí:
+    \begin{enumerate}[label=(\roman*)]
+        \item každá hladina je plně obsazena, kromě poslední
+        \item a je-li $v$ libovolný vrchol a $s$ jeho syn, pak $k(v)\leq k(v)$.
+    \end{enumerate}
+\end{definition}
