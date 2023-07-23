@@ -12,10 +12,10 @@
 
 \newcommand{\topindent}{3mm}
 
-\newtheorem{thm}[algcounter]{Věta}
-\newtheorem{lem}[algcounter]{Lemma}
-\newtheorem{stm}[algcounter]{Tvrzení}
-\newtheorem{cor}[algcounter]{Důsledek}
+\newtheorem{theorem}[algcounter]{Věta}
+\newtheorem{lemma}[algcounter]{Lemma}
+\newtheorem{proposition}[algcounter]{Tvrzení}
+\newtheorem{corollary}[algcounter]{Důsledek}
 
 \theoremstyle{definition}
 \newtheorem{definition}[algcounter]{Definice}
@@ -49,6 +49,10 @@
 
 % Info boxes
 \newcommand{\infobox}[1]{\awesomebox[gray]{2pt}{\faInfoCircle}{gray}{\textcolor{gray}{#1}}}
+
+% Time complexities
+\newcommand{\bigO}[1]{\mathcal{O}\left(#1\right)}
+\newcommand{\bigOmega}[1]{\Omega\left(#1\right)}
 
 %hyperref
 \hypersetup{

@@ -20,13 +20,12 @@
   \hspace*{\codeindent}
   \begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par
-\noindent \textit{Výstup:} #3\\
-\bigskip}
+\noindent \textit{Výstup:} #3}
 
 % Příkazy
-
-\newcommand{\Print}[1]{\textbf{Vytiskni} #1}
-\newcommand{\Return}[1]{\textbf{Vrať} #1}
+\newcommand{\Comment}[1]{{\fontfamily{qcr}\selectfont// #1}\\}
+\newcommand{\Print}[1]{\textbf{Vytiskni} #1\\}
+\newcommand{\Return}[1]{\textbf{Vrať} #1\\}
 
 % Podmínky
 \newenvironment{If}[1]{
