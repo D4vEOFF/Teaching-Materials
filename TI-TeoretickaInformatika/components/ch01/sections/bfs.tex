@@ -54,13 +54,13 @@ Zbývá prozkoumat časovou a paměťovou složitost BFS. Označme si počet vrc
         \item\label{bfs_slozitost_or_graf} Graf $G$ je orientovaný. Pak se hrana započítá pouze jednou, a to z vrcholu, z něhož vede. Celkově se vnitřní cyklus provede $m$-krát.
     \end{enumerate}
     V prvním případě tak pro časovou složitost bude platit
-    \[\bigO{n+\sum_i{d_i}}=\bigO{n+2m}=\bigO{n+m}.\]
+    \[\bigO{n+\sum_i{d_i}}=\bigO{n+2m}\stackrel{*}{=}\bigO{n+m}.\]
+    (V kroku označeném \texttt{*} zanedbáváme konstantu, neboť pracujeme s $\mathcal{O}$-notací.)\par
     V druhém případě dojdeme ke stejnému výsledku, akorát zmíněná suma bude, kvůli orientaci hran, rovna přesně počtu hran, tj.
     \[\bigO{n+\sum_i{d_i}}=\bigO{n+m}.\]
 
     Nyní k prostorové složitosti algoritmu. Na reprezentaci grafu (např. pomocí seznamu sousedů) spotřebujeme paměť $\bigO{n+m}$ ($n$ vrcholů, $m$ hran)\footnote{Resp. každá hrana je v neorientovaných grafech započítána dvakrát, protože každý vrchol obsahuje v seznamu svých sousedů vždy "protější" vrchol (stejný argument, jako u odvozování časové složitosti BFS).}. Dále si uchováváme vrcholy ve frontě, v níž může být v jednu chvíli maximálně $n$ vrcholů, tj. $\bigO{n}$, a k tomu máme seznam $stav$, kde je uloženo $\bigO{n}$ vrcholů. Celkově spotřebujeme paměti
     \[\bigO{n+m}+\bigO{n}+\bigO{n}=\bigO{n+m}.\]
-
 \end{proof}
 \begin{figure}[h]
     \centering
