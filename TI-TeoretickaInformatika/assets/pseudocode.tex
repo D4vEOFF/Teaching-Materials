@@ -1,4 +1,5 @@
 \usepackage{xparse}
+\usepackage{lineno}
 
 \newcommand{\codeindent}{0.7cm}
 \newcounter{algcounter}
@@ -14,7 +15,6 @@
 	\refstepcounter{algcounter}
 	
 	\noindent\textbf{Algoritmus \thealgcounter} (\textsc{#1})\\
-	% \fontfamily{qcr}\selectfont
 	\IfNoValueF{#2}{\textit{Vstup:} #2\\[.3em]}
 	\hspace*{\codeindent}
 	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
