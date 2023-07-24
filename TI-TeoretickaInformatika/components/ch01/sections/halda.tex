@@ -72,3 +72,9 @@ Při vkládání nového vrcholu (\textsc{Insert}) se nejdříve potřebujeme vy
     \caption{Vkládání nového vrcholu do haldy.}
     \label{fig:vkladani_vrcholu_halda}
 \end{figure}
+Postup můžeme zapsat zkráceně ve dvou bodech takto:
+\begin{itemize}
+    \item Vložíme nový vrchol s klíčem $x$ na první volnou pozici zleva na poslední hladině.
+    \item pokud je klíč rodiče větší než $x$, prohodíme vrcholy (resp. jejich klíče)\footnote{Vrchol v podstatě takto "probublá" do správné pozice ve stromě.}.
+    \item Opakujeme druhý krok.
+\end{itemize}
