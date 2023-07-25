@@ -2,6 +2,7 @@
 \usepackage{lineno}
 
 \newcommand{\codeindent}{0.7cm}
+\newcommand{\pseudoindent}{0.1cm}
 \newcounter{algcounter}
 
 \renewcommand{\thealgcounter}{%
@@ -16,8 +17,8 @@
 	
 	\noindent\textbf{Algoritmus \thealgcounter} (\textsc{#1})\\
 	\IfNoValueF{#2}{\textit{Vstup:} #2\\[.3em]}
-	\hspace*{\codeindent}
-	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
+	\hspace*{\pseudoindent}
+	\begin{minipage}{\dimexpr\columnwidth-\pseudoindent}
 }{\end{minipage}\par
 \noindent
 \IfNoValueF{#3}{\textit{Výstup:} #3\\}
@@ -76,7 +77,7 @@
 % Funkce
 \NewDocumentEnvironment{Function}{mo}{
 	\noindent
-	\textbf{Funkce} \textsc{#1} \IfNoValueF{#2}{(#2)}\\
+	\textbf{Funkce} \textsc{#1}\IfNoValueF{#2}{(#2)}\\
 	\hspace*{\codeindent}
   	\begin{minipage}{\dimexpr\columnwidth-\codeindent}
 }{\end{minipage}\par}
