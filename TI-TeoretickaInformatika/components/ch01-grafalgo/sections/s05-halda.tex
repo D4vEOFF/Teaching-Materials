@@ -118,7 +118,8 @@ Poslední dvojice operací, která se nám bude hodit, je zvýšení (\textsc{In
 
 Realizace samotných operací je již jednoduchá. Pokud protovedeme \textsc{Increase} klíče v určitém vrcholu, pak z důvodu, že klíče v synech vrcholu jsou stejné nebo větší, se halda může pokazit pouze "směrem dolů". Tedy provedeme nám již známé prohazování vrcholu s jeho syny, dokud nebude halda opravena (\textsc{BubbleDown}), stejně jako v případě odebírání kořene (\textsc{ExtractMin}).
 
-Operaci \textsc{Decrease} provedeme zcela stejně, akorát nyní se halda bude kazit "směrem nahoru", takže provedeme \textsc{BubbleUp}, jako při vkládání nového vrcholu (\textsc{Insert})
+Operaci \textsc{Decrease} provedeme zcela stejně, akorát nyní se halda bude kazit "směrem nahoru", takže provedeme \textsc{BubbleUp}, jako při vkládání nového vrcholu (\textsc{Insert}).
+\notebox{V případě \emph{maximové binární haldy} by operace vypadaly zcela stejně, akorát při operaci \textsc{Increase} budeme opravovat haldu směrem nahoru a u \textsc{Decrease} směrem dolů.}
 
 \subsubsection{Časové složitosti operací}
 
