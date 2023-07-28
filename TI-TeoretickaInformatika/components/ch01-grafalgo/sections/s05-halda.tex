@@ -1,5 +1,4 @@
 \section{Binární halda}\label{sec:halda}
-
 Uveďme motivační příklad na úvod. Mějme seznam čísel, z něhož chceme (pokud možno co nejrychleji) vybrat minimální/maximální hodnotu. Pro maximum bychom sestavit následující jednoduchý algoritmus.
 \begin{pseudo}{Max}[Seznam čísel $x_1,x_2,\dots,x_n$][Maximální hodnota seznamu \textit{m}]
     $m\gets x_1$\\
@@ -45,7 +44,7 @@ Uveďme motivační příklad na úvod. Mějme seznam čísel, z něhož chceme 
     \label{fig:halda_modely}
 \end{figure}
 
-Zde se nyní na chvíli pozastavme. Podmínka \ref{binhalda_podminka_2} v definici binární haldy \ref{def:binarni_halda} má za následek totiž velmi příjemnou vlastnost, když se podíváme, kde se v haldě nachází minimum. Pokud se budeme pohybovat od kořene směrem "dolů", hodnoty ve vrcholech se budou pouze zvětšovat, neboť klíče synů mají musí mít vždy stejnou nebo větší hodnotu než klíč v rodiči. Minimum se tak vždy nachází \emph{v kořeni stromu}, což znamená, že zjistění minima tak můžeme provést v \emph{konstantním čase} $\bigO{1}$.
+Zde se nyní na chvíli pozastavme. Podmínka \ref{binhalda_podminka_2} v definici binární haldy \ref{def:binarni_halda} má za následek totiž velmi příjemnou vlastnost, když se podíváme, kde se v haldě nachází minimum. Pokud se budeme pohybovat od kořene směrem "dolů", hodnoty ve vrcholech se budou pouze zvětšovat, neboť klíče synů musí mít vždy stejnou nebo větší hodnotu než klíč v rodiči. Minimum se tak vždy nachází \emph{v kořeni stromu}, což znamená, že zjistění minima tak můžeme provést v \emph{konstantním čase} $\bigO{1}$.
 \notebox{Pokud bychom chtěli naopak \emph{maximovou binární haldu}, bude definice \ref{def:binarni_halda} vypadat obdobně, akorát v podmínce \ref{binhalda_podminka_2} bude obrácená nerovnost, tj. $k(v)\geqslant k(s)$ (klíč v rodiči má vždy stejnou nebo vyšší hodnotu než klíče v jeho synech). Maximum se bude opět nacházet v kořeni haldy.}
 Je však více operací, které bychom rádi s haldou prováděli. Vypišme si všechny, které nás budou zajímat.
 \begin{itemize}
