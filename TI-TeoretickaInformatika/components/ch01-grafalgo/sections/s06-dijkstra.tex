@@ -37,7 +37,7 @@ V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$
         \begin{For}{všechny sousedy $w\in V$ vrcholu $v$}
             \Comment{Našli jsme lepší cestu}
             \begin{If}{$D(v)+\ell(v,w)<D(w)$}
-                $D(w)=\gets D(v)+\ell(v,w)$\\
+                $D(w)\gets D(v)+\ell(v,w)$\\
                 $stav(w)\gets$ \textit{otevřený}
             \end{If}
         \end{For}
@@ -51,7 +51,7 @@ V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$
     \label{fig:dijkstra_kratsi_cesta}
 \end{figure}
 
-\subsubsection{Rozbor Dijkstrova algoritmu}
+\subsubsection{Správnost Dijkstrova algoritmu}
 
 Nejprve je dobré si uvědomit, proč algoritmus vlastně funguje. Kdykoliv uzavíráme vrchol (tzn. vybereme vrchol s nejmenší hodnotou $D(v)$), pak se spoléháme na to, že $D(v)$ opravdu odpovídá v daný moment délce nejkraší cesty z $v_0$ do $v$. Ale proč to tak musí být?
 
