@@ -63,3 +63,35 @@ Pokud tedy budeme předpokládat, že $\psi$ splňuje výše zmíněnou vlastnos
 Z toho je ale již vidět, že $f(u)<f(v)$, tedy $u$ musí mít nižší $f$-skóre než $v$. Tzn. algoritmus A* by upřednostnil vrchol $u$ před $v$.
 
 Upozorněme zde na fakt, že náš předpoklad o heuristice je velmi důležitý, neboť pokud bychom si zvolili heuristiku nevhodně, algoritmus již fungovat nebude a obecně může dojít k tomu, že nějaký z vrcholů vybereme "předčasně".
+
+\begin{remark}
+    \begin{itemize}
+        \item Všimněme si, že Dijkstrův algoritmus je speciálním případem algoritmu A*. Stačí pro všechny vrcholy $v$ položit\footnote{Lze zvolit klidně i obecnou konstantu $c\in\R$, tj. $\psi(v)=c$.} $\psi(v)=0$.
+        \item Je dobré dodat, že heuristiku bychom měli být schopni pro každý vrchol spočítat co nejrychleji, nejlépe v konstantním čase, tj. $\bigO{1}$.
+    \end{itemize}
+\end{remark}
+
+Rozbor časové složitosti zde vynecháme. Je totiž silně závislá na tom, jakou heuristiku $\psi$ si zvolíme. Při vhodné volbě doběhne A* zpravidla rychleji oproti Dijkstrově algoritmu. Může se však také stát, že $\psi$ zvolíme nevhodně (i přesto, že splňuje trojúhelníkovou nerovnost výše), a algoritmus nakonec poběží déle.
+
+\subsubsection{Ukázky heuristických funkcí}
+
+Zbývá zodpovědět otázku, jakou heuristiku tedy použít? Odpověď není zcela jednoznačná, neboť záleží na situaci. Vraťme se opět k příkladu s bludištěm, kdy začínáme na určitém políčku a snažíme se dostat do cílového, přičemž hráč se smí pohybovat všemy směry vždy o jedno pole. Políčka identifikujeme podle jejich souřadnic, tj. dvojice $(x,y)$.
+
+Jednou možností je tzv. \emph{eukleidovská vzdálenost}. Ta je pro libovolnou dvojici bodů v rovině $X=(x_1,y_1)$ a $Y=(x_2,y_2)$ definována jako
+\[\sqrt{(x_1-x_2)^2+(y_1-y_2)^2}.\]
+V případě cílového políčka známe jeho souřadnice, takže můžeme snadno vypočítat eukleidovskou vzdálenost libovolného políčka od cílového. To lze použít jako heuristiku\footnote{Dokonce bychom mohli použít jako heuristiku pouze výraz pod odmocninou, tj. $(x_1-x_2)^2+(y_1-y_2)^2$.}, označme si ji $\psi_E$. Situaci lze sledovat na obrázku \ref{fig:astar_bludiste_euclid}, kde šedě je vyznačena nejkratší cesta do pole se souřadnicemi $(x,y)$.
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_mrizka_euclid.pdf}
+    \caption{Příklad bludiště s eukleidovskou heuristikou.}
+    \label{fig:astar_bludiste_euclid}
+\end{figure}
+Pokud bychom však pracovali s bludištěm, kde se \emph{nelze pohybovat po diagonálách} nebo by nám to pravidla neumožňovala, můžeme výpočet heuristické funkce nahradit něčím jednodušším. V tomto ohledu se pak často využívá tzv. \emph{manhattanská vzdálenost} (označme $\psi_M$) definovaná vztahem
+\[\abs{x_1-x_2}+\abs{y_1-y_2}.\]
+\begin{figure}[h]
+    \centering
+    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_mrizka_manhattan.pdf}
+    \caption{Příklad bludiště s manhattnskou heuristikou.}
+    \label{fig:astar_bludiste_manhattan}
+\end{figure}
+Stejně jako eukleidovská vzdálenost, i manhattanská vzdálenost splňuje trojúhelníkovou nerovnost. Její výhodou je nižší náročnost při výpočtu (výpočet odmocniny\footnote{V mnoha případech, např. v některých starších videohrách jako Quake III, se vývojáři snažili vyhýbat výpočtu odmocniny, nebo volili některé sofistikovanější výpočty, které byly rychlé a poskytovaly dobrý odhad dané hodnoty.} je již trochu pomalejší) a to hlavně z důvodu, že pracujeme vždy s celými čísly. Její nevýhodou však může být, že oproti eukleidovské vzdálenosti nabývá větších hodnot a nelze ji vždy použít. Pokud bychom pracovali např. s mapou České republiky, je nejspíše jasné, že se již nebude jednat o dokonalou čtvercovou síť, jako tomu je u bludiště.
