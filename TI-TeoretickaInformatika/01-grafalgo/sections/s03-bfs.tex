@@ -36,7 +36,7 @@ Na počátku začneme s jedním otevřeným vrcholem a to $v_0$ (zde začínáme
 BFS rozděluje vrcholy do vrstev podle toho, v jaké vzdálenosti od počátečního vrcholu se nachází (viz obrázek \ref{fig:bfs_vrstvy}). Nejdříve jsou prozkoumány vrcholy ve vzdálenosti 0 (tj. pouze $v_0$), poté ve vzdálenostech 1, 2, \dots Z toho vyplývá, že kdykoliv při otevírání libovolného vrcholu $v$ nastavujeme hodnotu $D(v)$, bude tato hodnota vždy odpovídat délce nejkratší cesty z $v_0$ do $v$. Tato hodnota bude však nastavena pouze u těch vrcholů, které jsou z $v_0$ dosažitelné (ostatní vrcholy zůstanou ve stavu nenalezený).
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=.75]{ch01_bfs_vrstvy.pdf}
+    \includegraphics[scale=.75]{01-grafalgo/images/ch01_bfs_vrstvy.pdf}
     \caption{Vrcholy rozdělené do vrstev podle průběhu BFS.}
     \label{fig:bfs_vrstvy}
 \end{figure}
@@ -64,6 +64,6 @@ Zbývá prozkoumat časovou a paměťovou složitost BFS. Označme si počet vrc
 \end{proof}
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=.7]{ch01_zapocitavani_hran.pdf}
+    \includegraphics[scale=.7]{01-grafalgo/images/ch01_zapocitavani_hran.pdf}
     \caption{Znázornění situace v důkazu části \ref{bfs_slozitost_neor_graf} věty \ref{thm:bfs_slozitost}.}
 \end{figure}

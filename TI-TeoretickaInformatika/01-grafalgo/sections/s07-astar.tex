@@ -5,7 +5,7 @@ Nyní omezíme naše soustředění na případy, kdy hledáme cestu pouze do n�
 Mějme bludiště, v němž se nachází hráč (oranžový kruh), jež se může pohybovat libovolným směrem vždy o jedno pole, přičemž cílovým pole se nachází vpravo dole (červeně vyznačené). Situaci lze vidět na obrázku \ref{fig:mrizka}. Takovou situaci můžeme znázornit pomocí grafu, kde každá hrana má váhu 1, popř. lze použít neohodnocený graf.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=1.2]{components/images/ch01_mrizka.pdf}
+    \includegraphics[scale=1.2]{01-grafalgo/images/ch01_mrizka.pdf}
     \caption{Mřížka a optimální směr pohybu hráče.}
     \label{fig:mrizka}
 \end{figure}
@@ -14,7 +14,7 @@ Pokud bychom aplikovali např. BFS, či Dijkstrův algoritmus, prozkoumali bycho
 Myšlenka je stále stejná, avšak nyní budeme vybírat vrcholy podle hodnoty $D(v)+\psi(v)$ (místo pouhého $D(v)$), kde $\psi$ je tzv. \emph{heuristická funkce} nebo zkráceně \emph{heuristika}, která slouží jako \emph{odhad vzdálenosti od cílového vrcholu} v grafu (viz obrázek \ref{fig:astar_heuristika}).
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_heuristika.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_astar_heuristika.pdf}
     \caption{Znázornění heuristické funkce $\psi$.}
     \label{fig:astar_heuristika}
 \end{figure}
@@ -52,7 +52,7 @@ Oproti Dijkstrově algoritmu tedy skutečně nenastává moc změn, akorát je p
 Podobně jako u Dijkstrova algoritmu i zde platí, že při výběru (tj. otevírání) vrcholu $v$ odpovídá $D(v)$ délce nejkratší cesty. Argument pro tuto skutečnost je podobný. Předpokládejme, že otevíráme nějaký vrchol $v$, přičemž hodnota $D(v)$ je větší, než je skutečná délka nejkratší cesty. Pak existuje nějaký sousední vrchol $u$ vrcholu $v$, přes nějž nutně vede nejkratší cesta do $v$, tj. platí $D(u)+\ell(u,v)<D(v)$ (viz obrázek \ref{fig:astar_kratsi_cesta}).
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_kratsi_cesta.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_astar_kratsi_cesta.pdf}
     \caption{Situace při výběru vrcholu $v$ při heuristice $\psi$, kdy $D(v)$ neodpovídá délce nejkratší cesty.}
     \label{fig:astar_kratsi_cesta}
 \end{figure}
@@ -82,7 +82,7 @@ Jednou možností je tzv. \emph{eukleidovská vzdálenost}. Ta je pro libovolnou
 V případě cílového políčka známe jeho souřadnice, takže můžeme snadno vypočítat eukleidovskou vzdálenost libovolného políčka od cílového. To lze použít jako heuristiku\footnote{Dokonce bychom mohli použít jako heuristiku pouze výraz pod odmocninou, tj. $(x_1-x_2)^2+(y_1-y_2)^2$.}, označme si ji $\psi_E$. Situaci lze sledovat na obrázku \ref{fig:astar_bludiste_euclid}, kde šedě je vyznačena nejkratší cesta do pole se souřadnicemi $(x,y)$.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_mrizka_euclid.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_astar_mrizka_euclid.pdf}
     \caption{Příklad bludiště s eukleidovskou heuristikou.}
     \label{fig:astar_bludiste_euclid}
 \end{figure}
@@ -90,7 +90,7 @@ Pokud bychom však pracovali s bludištěm, kde se \emph{nelze pohybovat po diag
 \[\abs{x_1-x_2}+\abs{y_1-y_2}.\]
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_astar_mrizka_manhattan.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_astar_mrizka_manhattan.pdf}
     \caption{Příklad bludiště s manhattnskou heuristikou.}
     \label{fig:astar_bludiste_manhattan}
 \end{figure}

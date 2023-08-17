@@ -4,7 +4,7 @@ Již jsme si ukázali, že v \emph{neohodnoceném grafu} $G=(V,E)$ umíme relati
 \importantbox{Zde ji narážíme na problém, neboť obecně platí, že když nalezneme vrchol přes dvojici různých hran, nemusí být nalezené cesty stejně dlouhé. Na obrázku \ref{fig:ohod_graf} si lze všimnout, že cesta $(v_0,v_1,v_2)$ je kratší než $(v_0,v_2)$, přestože má více hran.}
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_ohod_graf.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_ohod_graf.pdf}
     \caption{Příklad ohodnoceného grafu.}
     \label{fig:ohod_graf}
 \end{figure}
@@ -15,7 +15,7 @@ Jedním z nejznámějších algoritmů v tomto ohledu je tzv. \emph{Dijkstrův a
 Zaměřme se na grafy, jejichž váhy hran jsou nezáporné. Záporně ohodnocené hrany mohou způsobovat problémy, neboť mezi určitou dvojicí vrcholů by již nemusela nutně existovat nejkratší cesta. Např. v obrázku \ref{fig:zapor_ohod_graf} si lze všimnout, že mezi vrcholy $v_0$ a $v_4$ neexistuje nejratší cesta konečné délky, neboť cyklus $(v_1, v_3, v_2, v_1)$ lze projít libovolněkrát, přičemž každým průchodem se zkrátí o $3$. Odpověď na délku nejrakší cesty mezi těmito vrcholy by tak musela být $-\infty$.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_zapor_ohod_graf.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_zapor_ohod_graf.pdf}
     \caption{Graf, kde mezi $v_0$ a $v_4$ neexistuje (konečná) nejkratší cesta.}
     \label{fig:zapor_ohod_graf}
 \end{figure}
@@ -46,7 +46,7 @@ V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$
 \end{pseudo}
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_dijkstra_kratsi_cesta.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_dijkstra_kratsi_cesta.pdf}
     \caption{Znázornění situace v průběhu Dijkstrova algoritmu.}
     \label{fig:dijkstra_kratsi_cesta}
 \end{figure}
@@ -60,7 +60,7 @@ Zkusme uvážit opačnou situaci, tzn. kdyby nastalo, že jsme vybrali nějaký 
 V kroku označeném \texttt{*} vycházíme právě z toho, že váhy hran jsou nezáporné, tj. $\ell(u,v)>0$ (proto tento argument funguje). Tedy stručně řečeno\footnote{Nebo spíš napsáno?}, pokud $D(v)$ neodpovídá délce nejkratší cesty, pak musí existovat jiný vrchol $u$ s nižším $D(u)$.
 \begin{figure}[h]
     \centering
-    \includegraphics[scale=\graphimgsize]{components/images/ch01_dijkstra_vyber_vrcholu.pdf}
+    \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_dijkstra_vyber_vrcholu.pdf}
     \caption{Situace při výběru vrcholu $v$, kdy $D(v)$ neodpovídá délce nejkratší cesty.}
     \label{fig:dijkstra_vyber_vrcholu}
 \end{figure}
