@@ -1,0 +1,63 @@
+% Enumerate
+%\setlist[enumerate]{topsep=0pt,itemsep=-1ex,partopsep=1ex,parsep=1ex,label=(\arabic*)}
+
+\MakeOuterQuote{"}
+
+% Colors
+\definecolor{lightblue}{HTML}{009AD4}
+\definecolor{darkgreen}{HTML}{0D7103}
+\definecolor{lightgreen}{HTML}{68FF00}
+\definecolor{darkred}{HTML}{AF0B0B}
+\definecolor{lightred}{HTML}{FF5100}
+\definecolor{orange}{HTML}{FFE000}
+\definecolor{codeblue}{HTML}{FF0055}
+\definecolor{codegreen}{rgb}{0,0.6,0}
+\definecolor{codegray}{rgb}{0.5,0.5,0.5}
+\definecolor{codebeige}{HTML}{D4A000}
+\definecolor{backcolour}{rgb}{0.95,0.95,0.92}
+
+\newcommand{\markred}[1]{\textcolor{lightred}{#1}}
+\newcommand{\markgreen}[1]{\textcolor{lightgreen}{#1}}
+\newcommand{\markorange}[1]{\textcolor{orange}{#1}}
+\newcommand{\markblue}[1]{\textcolor{lightblue}{#1}}
+
+% Inline images
+\newcommand{\inlineimgscale}{1.1}
+
+% X and check mark
+\newcommand{\cmark}{\markgreen{\ding{51}}}
+\newcommand{\xmark}{\markred{\ding{55}}}
+
+% Redefinions
+\renewcommand{\implies}{\Rightarrow}
+\renewcommand{\impliedby}{\Leftarrow}
+
+% Math
+\newcommand{\R}{\mathbb{R}}
+\newcommand{\C}{\mathbb{C}}
+\newcommand{\N}{\mathbb{N}}
+\newcommand{\Z}{\mathbb{Z}}
+\newcommand{\Q}{\mathbb{Q}}
+
+% Code
+\lstdefinestyle{clang}{
+    basicstyle=\small\ttfamily\color{white},
+    language=C,
+    keywordstyle=\color{codeblue},
+    commentstyle=\color{codegreen},
+    numberstyle=\tiny\color{codegray},
+    stringstyle=\color{codebeige},
+    breakatwhitespace=false,
+    breaklines=true,
+    captionpos=b,
+    keepspaces=true,
+    numbersep=5pt,
+    showspaces=false,
+    showstringspaces=false,
+    showtabs=false,
+    morekeywords={void,int,double,float,unsigned,if,else,\#include}
+    tabsize=0.5
+}
+\lstset{escapeinside={(*}{*)},style=clang}
+
+\newcommand{\hlcode}[1]{\colorbox{red}{#1}}
