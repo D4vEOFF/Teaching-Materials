@@ -8,6 +8,7 @@
 % Title page
 \title{Algoritmizace}
 \author{David Weber}
+\institute{SPŠE Ječná}
 \date{\today}
 
 \begin{document}
@@ -20,16 +21,38 @@
         \titlepage
     \end{frame}
 
-    \begin{frame}{Tvorba programu}
-        Chci něco spočítat, jak na to?
+    \section{Tvorba programu}
+    \begin{frame}[t]{Algoritmizace}
+        \only<2->{Chci něco spočítat, jak na to?}
+        \only<3->{
         \begin{itemize}
-            \item Rozmyslím si postup výpočtu
-            \item Provedu výpočet podle vymyšleného postupu
+            \only<3->{\item Rozmyslím si postup výpočtu}
+            \only<4->{\item Provedu výpočet podle vymyšleného postupu}
         \end{itemize}
-        Potřebuji nutně rozumnět postupu?
-        \begin{center}
+        }
+        \only<5->{Potřebuji nutně rozumnět postupu?}
+        \only<6->{\begin{center}
             \markred{$\implies$ Nepotřebuji, důležitá je jeho správnost!}
-        \end{center}
+        \end{center}}
+    \end{frame}
+    \begin{frame}{Algoritmus}
+        \only<2>{\begin{block}{Co je to algoritmus?}
+            Přesný návod či postup, kterým lze vyřešit daný typ úlohy.
+        \end{block}}
+    \end{frame}
+    \begin{frame}[t]{Algoritmus}
+        \only<2->{V užším slova smyslu se algoritmem rozumí takové postupy, které mají určité vlastnosti.}
+        \only<3->{
+            \begin{block}{Vlastnosti algoritmu}
+                \begin{itemize}
+                    \item \textbf{Elementárnost (diskrétnost).} Algoritmus se skládá z konečného počtu jednoduchých (elementárních) kroků.
+                    \only<4->{\item \textbf{Konečnost (finitnost).} Algoritmus musí skončit v konečném počtu kroků.}
+                    \only<5->{\item \textbf{Obecnost (hromadnost).} Algoritmus neřeší jeden konkrétní problém, ale obecnou třídu obdobných problémů (např. neřeší jen "kolik je $2\cdot 2$", ale obecně součin libovolné dvojice čísel $a\cdot b$).}
+                    \only<6->{\item \textbf{Determinovanost.} Po každém kroku lze jednoznačně určit, který následuje.}
+                    \only<7->{\item \textbf{Správnost.} Algoritmus řeší danou úlohu, tj. pro přípustná data vydá správný výsledek a nesprávná vstupní data zamítne.}
+                \end{itemize}
+            \end{block}
+        }
     \end{frame}
 
 \end{document}
