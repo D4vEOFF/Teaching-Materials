@@ -7,14 +7,9 @@
 
 % Title page
 \title{Algoritmizace}
-\author{David Weber}
-\institute{SPŠE Ječná}
-\date{\today}
+\input{../titlepage.tex}
 
 \begin{document}
-
-    % Itemize
-    \setlist[itemize]{label=\textcolor{black}{\textbullet}}
 
     % Slides
     \begin{frame}
@@ -22,6 +17,8 @@
     \end{frame}
 
     \section{Tvorba programu}
+
+    \subsection{Algoritmizace}
     \begin{frame}[t]{Algoritmizace}
         \only<2->{Chci něco spočítat, jak na to?}
         \only<3->{
@@ -35,6 +32,8 @@
             \markred{$\implies$ Nepotřebuji, důležitá je jeho správnost!}
         \end{center}}
     \end{frame}
+
+    \subsection{Algoritmus}
     \begin{frame}{Algoritmus}
         \only<2>{\begin{block}{Co je to algoritmus?}
             Přesný návod či postup, kterým lze vyřešit daný typ úlohy.
@@ -53,6 +52,139 @@
                 \end{itemize}
             \end{block}
         }
+    \end{frame}
+
+    \subsection{Záznam algoritmu}
+    \begin{frame}[t]{Záznam algoritmu}
+        \only<2->{Každý záznam (popis) algoritmu musí být}
+        \only<3->{
+            \begin{itemize}
+            \only<3->{\item \textbf{Srozumitelný.} Je jasné, co a jak algoritmus řeší.}
+            \only<4->{\item \textbf{Přehledný.} Ze záznamu je algoritmus rychle uchopitelný.}
+            \only<5->{\item \textbf{Jednoznačný.} Každý krok musí být jednoznačně popsán (vágní popisy jsou nežádoucí).}
+            \only<6->{\item \textbf{Stručný.} Neuvádíme zbytečné detaily (matoucí).}
+            \end{itemize}
+        }
+    \end{frame}
+    \subsection{Záznam algoritmu}
+    \begin{frame}[t,fragile]{Způsoby zadání algoritmu}
+        \only<2->{\begin{enumerate}
+            \only<2->{\item Slovním vyjádřením $\implies$ např. tzv. \textbf{pseudokódem}.}
+            \only<3->{\begin{exampleblock}{Příklad pseudokódu}
+                1. Vytvoř proměnnou $x$\\
+                2. Pro $i=1,2,\dots,10$ opakuj:\\
+                3. \;\;\;Do $x$ ulož hodnotu $x+i$\\
+                4. Vypiš hodnotu proměnné $x$
+            \end{exampleblock}}
+            \only<4->{\markred{$\implies$ Pozor, zde je obvzlášť třeba dbát na jednoznačný zápis!}}
+            \only<5->{\item Smluveným grafickým vyjádřením (diagramem)}
+            \only<6->{\begin{block}{Druhy diagramů}
+                \begin{itemize}
+                    \item \textbf{Plošný strukturogram} (tzv. "blokáč")
+                    \item \textbf{Vývojový diagram}
+                \end{itemize}
+            \end{block}}
+        \end{enumerate}}
+    \end{frame}
+
+    \section{Diagramy}
+
+    \subsection{Prvky algoritmu}
+    \begin{frame}[t]{Prvky algoritmu}
+        \only<2->{\begin{itemize}
+            \setlength\itemsep{1em}
+            \only<2->{\item \textbf{Sekvence.} Jednotlivý krok, vykoná se vždy.}
+            \only<3->{\item \textbf{Selekce.} Větvení programu, volba pokračování dle stanovené podmínky.}
+            \only<4->{\item \textbf{Iterace.} Cyklus, tj. opakované provádění určité posloupnosti příkazů, dokud je splněna stanovaná podmínka.
+            \begin{itemize}
+                \item Iterace \emph{s testem na začátku}
+                \item Iterace \emph{s testem na konci}
+            \end{itemize}}
+        \end{itemize}}
+    \end{frame}
+
+    \subsection{Značky}
+
+    \subsubsection{Sekvence}
+    \begin{frame}{Sekvence}
+        Činnosti jsou vykonávány v pořadí od shora dolů.
+        \begin{columns}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{../images/00-vyvojak-sekvence.pdf}
+                \end{figure}
+            \end{column}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.6]{../images/00-strukturogram-sekvence.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \subsubsection{Selekce}
+    \begin{frame}{Selekce}
+        \begin{columns}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-vyvojak-selekce.pdf}
+                \end{figure}
+            \end{column}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-strukturogram-selekce.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \subsubsection{Iterace s testem na začátku}
+    \begin{frame}{Iterace s testem na začátku}
+        \begin{columns}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-vyvojak-iterace-zacatek.pdf}
+                \end{figure}
+            \end{column}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-strukturogram-iterace-zacatek.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \subsubsection{Iterace s testem na konci}
+    \begin{frame}{Iterace s testem na konci}
+        Oproti iteraci s testem na začátku je zde zaručeno, že tělo iterace se vykoná \textbf{alespoň jednou}.
+        \begin{columns}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-vyvojak-iterace-konec.pdf}
+                \end{figure}
+            \end{column}
+            \begin{column}{.5\textwidth}
+                \begin{figure}
+                    \centering
+                    \includegraphics[scale=.5]{../images/00-strukturogram-iterace-konec.pdf}
+                \end{figure}
+            \end{column}
+        \end{columns}
+    \end{frame}
+
+    \section{Závěr}
+    \begin{frame}{Dotazy?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.5]{../images/discussion.pdf}
+        \end{figure}
     \end{frame}
 
 \end{document}
