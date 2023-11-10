@@ -61,7 +61,7 @@ Je však více operací, které bychom rádi s haldou prováděli. Vypišme si v
 
 Podívejme se postupně na jednotlivé operace a jejich realizaci. S dovolením si zde nyní odpustíme zápis pomocí pseudokódu a pro jednoduchost si dané operace pouze slovně vysvětlíme. Pro následné odvození časové složitosti nám to bude stačit.
 
-\subsubsection{Vkládání nového vrcholu}
+\subsection{Vkládání nového vrcholu}
 
 Při vkládání nového vrcholu (\textsc{Insert}) se nejdříve potřebujeme vypořádat s tím, kam vrchol v haldě umístíme. S tím nám ale pomůže podmínka \ref{binhalda_podminka_1} v definici binární haldy. Všechny hladiny stromu jsou vždy plně obsazené, kromě poslední, která se všechny vrcholy nachází vlevo. To znamená, že nový vrchol můžeme umístit na první volnou pozici vlevo na poslední hladině. To však nemůžeme provést zcela beztrestně, neboť nemáme nijak zaručeno, že bude splněna podmínka \ref{binhalda_podminka_2}. Klíč v novém vrcholu může mít hodnotu \emph{ostře menší} než jeho rodič. Haldu "opravíme" postupným prohazováním vrcholu s jeho rodičem, dokud nebude podmínka splněna (viz obrázek \ref{fig:vkladani_vrcholu_halda}).
 \begin{figure}[h]
@@ -82,7 +82,7 @@ Postup můžeme zapsat zkráceně ve třech bodech takto:
     \item Opakujeme druhý krok.
 \end{itemize}
 
-\subsubsection{Odstranění minima}
+\subsection{Odstranění minima}
 
 Co se týče získání minimálního klíče v haldě, jedná se o velmi triviální operaci. Zkrátka "přečteme" klíč v kořeni a jsme hotovi. Ovšem pokud bychom chtěli minimum (\textsc{ExtractMin}) ze stromu odstanit, bude to již o něco složtější. Kořen ze stromu nemůžeme "jen tak" smazat, jeho pozici musí zastoupit jiný vrchol. Abychom neporušili vlastnosti haldy, nahradíme odstraněný kořen \emph{nejlevějším vrcholem na poslední hladině}. Tím jsme jistě neporušili vlastnost \ref{binhalda_podminka_1}, neboť poslední hladina, jako jediná, nemusí být plně obsazená.
 
@@ -115,7 +115,7 @@ V bodech můžeme zapsat celou operaci následovně:
 \end{itemize}
 Operacím, které jsme prezentovali při vkládání vrcholu, resp. odebírání minima z haldy, kdy vrchol "probublával" nahoru, resp. dolů, se někdy nazývají \textsc{BubbleUp} a \textsc{BubbleDown}. Ještě se nám budou hodit u operací \textsc{Increase} a \textsc{Decrease}.
 
-\subsubsection{Zvýšení a snížení hodnoty klíče ve vrcholu}
+\subsection{Zvýšení a snížení hodnoty klíče ve vrcholu}
 
 Poslední dvojice operací, která se nám bude hodit, je zvýšení (\textsc{Increase}) a snížení (\textsc{Decrease}) hodnoty klíče ve vybraném vrcholu. K tomu potřebujeme akorát vyřešit, jak budeme k vrcholům přistupovat. Podle klíče vyhledávat neumíme, ale můžeme si zavést např. pomocný slovník, který budeme "adresovat" pomocí příslušného vrcholu a vracenou hodnotou bude klíč ve vrcholu. Takto spotřebujeme navíc pouze $\bigO{n}$ paměti, kde $n$ je počet vrcholů v haldě.
 
@@ -124,7 +124,7 @@ Realizace samotných operací je již jednoduchá. Pokud protovedeme \textsc{Inc
 Operaci \textsc{Decrease} provedeme zcela stejně, akorát nyní se halda bude kazit "směrem nahoru", takže provedeme \textsc{BubbleUp}, jako při vkládání nového vrcholu (\textsc{Insert}).
 \notebox{V případě \emph{maximové binární haldy} by operace vypadaly zcela stejně, akorát při operaci \textsc{Increase} budeme opravovat haldu směrem nahoru a u \textsc{Decrease} směrem dolů.}
 
-\subsubsection{Časové složitosti operací}
+\subsection{Časové složitosti operací}
 
 Pojďme si nyní rozebrat časové složitosti zmíněných operací \textsc{Insert}, \textsc{Min}, \textsc{ExtractMin}, \textsc{Increase} a \textsc{Decrease} a podívat se, jak moc jsme si pomohli oproti práci s polem (seznamem). Pokud se pozorně podíváme na operace popsané výše, je zjevné, že nejvíce bude naše operace zpomalovat ono "probublávání" vrcholu při opravování haldy (vyjma operace \textsc{Min}, kde jen přečteme klíč v kořeni), tj. \textsc{BubbleUp} a \textsc{BubbleDown}. Na nich bude celková časová složitost záviset.
 \tipbox{Všimněme si, že po každém prohození vrcholů při \textsc{BubbleUp} nebo \textsc{BubbleDown} se vrchol posune o jednu hladinu výše/níže.}

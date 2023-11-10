@@ -32,11 +32,11 @@ V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$
     }
     $stav(v_0)\gets$ \textit{otevřený}\\
     $D(v_0)\gets 0$\\
-    \While{existují otevřené vrcholy}{
+    \While{\textup{existují otevřené vrcholy}}{
         \tcp{Kandidát na nejkraší cestu do sousedních vrcholů}
         $v\gets$ otevřený vrchol s nejmenším $D$\\
         
-        \ForEach{soused $w\in V$ vrcholu $v$}{
+        \ForEach{\textup{soused $w\in V$ vrcholu $v$}}{
             \tcp{Našli jsme lepší cestu}
             \If{$D(v)+\ell(v,w)<D(w)$}{
                 $D(w)\gets D(v)+\ell(v,w)$\\
@@ -55,7 +55,7 @@ V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$
     \label{fig:dijkstra_kratsi_cesta}
 \end{figure}
 
-\subsubsection{Správnost Dijkstrova algoritmu}
+\subsection{Správnost Dijkstrova algoritmu}
 
 Nejprve je dobré si uvědomit, proč algoritmus vlastně funguje. Kdykoliv uzavíráme vrchol (tzn. vybereme vrchol s nejmenší hodnotou $D(v)$), pak se spoléháme na to, že $D(v)$ opravdu odpovídá v daný moment délce nejkraší cesty z $v_0$ do $v$. Ale proč to tak musí být?
 
@@ -69,7 +69,7 @@ V kroku označeném \texttt{*} vycházíme právě z toho, že váhy hran jsou n
     \label{fig:dijkstra_vyber_vrcholu}
 \end{figure}
 
-\subsubsection{Časová složitost Dijkstrova algoritmu}
+\subsection{Časová složitost Dijkstrova algoritmu}
 
 Zbývá nám ještě analyzovat časovou složitost. Pokud se zpětně podíváme na pseudokód algoritmu, lze si všimnout, že podstatnou roli bude hrát vybírání vrcholu s minimální hodnotou $D(v)$. Nabízí se tak otázka, jak danou operaci implementovat. První varintou je hodnoty $D$ realizovat jako prostý \emph{seznam (popř. pole)}.
 \begin{theorem}[Dijkstra se seznamem]

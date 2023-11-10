@@ -31,12 +31,12 @@ Oproti Dijkstrově algoritmu tedy skutečně nenastává moc změn, akorát je p
     }
     $stav(v_0)\gets$ \textit{otevřený}\\
     $D(v_0)\gets 0,\,f(v_0)\gets\psi(v_0)$\\
-    \While{existují otevřené vrcholy}{
+    \While{\textup{existují otevřené vrcholy}}{
         $v\gets$ otevřený vrchol s nejmenším $f$-skóre\\
         \If{$v=v_G$}{
             \Return{$D(v_G)$}
         }
-        \ForEach{soused $w$ vrcholu $v$}{
+        \ForEach{\textup{soused $w$ vrcholu $v$}}{
             \tcp{Našli jsme lepší cestu}
             \If{$D(v)+\ell(v,w)<D(w)$}{
                 $D(w)\gets D(v)+\ell(v,w)$\\
@@ -49,7 +49,7 @@ Oproti Dijkstrově algoritmu tedy skutečně nenastává moc změn, akorát je p
     \KwOut{Vzdálenost $v_0$ od $v_G$}
 \end{algorithm}
 
-\subsubsection{Správnost algoritmu A*}
+\subsection{Správnost algoritmu A*}
 
 Podobně jako u Dijkstrova algoritmu i zde platí, že při výběru (tj. otevírání) vrcholu $v$ odpovídá $D(v)$ délce nejkratší cesty. Argument pro tuto skutečnost je podobný. Předpokládejme, že otevíráme nějaký vrchol $v$, přičemž hodnota $D(v)$ je větší, než je skutečná délka nejkratší cesty. Pak existuje nějaký sousední vrchol $u$ vrcholu $v$, přes nějž nutně vede nejkratší cesta do $v$, tj. platí $D(u)+\ell(u,v)<D(v)$ (viz obrázek \ref{fig:astar_kratsi_cesta}).
 \begin{figure}[h]
@@ -75,7 +75,7 @@ Upozorněme zde na fakt, že náš předpoklad o heuristice je velmi důležitý
 
 Rozbor časové složitosti zde vynecháme. Je totiž silně závislá na tom, jakou heuristiku $\psi$ si zvolíme. Při vhodné volbě doběhne A* zpravidla rychleji oproti Dijkstrově algoritmu. Může se však také stát, že $\psi$ zvolíme nevhodně (i přesto, že splňuje trojúhelníkovou nerovnost výše), a algoritmus nakonec poběží déle.
 
-\subsubsection{Ukázky heuristických funkcí}
+\subsection{Ukázky heuristických funkcí}
 
 Zbývá zodpovědět otázku, jakou heuristiku tedy použít? Odpověď není zcela jednoznačná, neboť záleží na situaci. Vraťme se opět k příkladu s bludištěm, kdy začínáme na určitém políčku a snažíme se dostat do cílového, přičemž hráč se smí pohybovat všemy směry vždy o jedno pole. Políčka identifikujeme podle jejich souřadnic, tj. dvojice $(x,y)$.
 
