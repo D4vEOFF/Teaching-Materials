@@ -21,31 +21,33 @@ Myšlenka je stále stejná, avšak nyní budeme vybírat vrcholy podle hodnoty 
 Součtu $D(v)+\psi(v)$ budeme říkat tzv. \emph{f-skóre}\footnote{V jiných textech, převážně anglických, se někdy používá pro heuristiku označení $h$ a pro vzdálenost označení $g$, tzv. \emph{g-skóre}, tj. $f(v)=g(v)+h(v)$.}, značíme $f(v)$. V každé iteraci tak budeme vybírat vrchol s nejnižším $f$-skóre, k čemuž lze opět použít pole, nebo binární haldu.
 
 Oproti Dijkstrově algoritmu tedy skutečně nenastává moc změn, akorát je potřeba si zvlášť uchovávat hodnoty $f$-skóre.
-\begin{pseudo}{A*}[Nezáporně ohodnocený graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.][Vzdálenost $v_0$ od $v_G$.]
-    \Comment{Inicializace}
-    \begin{For}{všechny vrcholy $v\in V$}
+\begin{algorithm}\label{alg:astar}
+    \caption{A*}
+    \KwIn{Nezáporně ohodnocený graf $G=(V,E)$ a počáteční vrchol $v_0\in V$}
+    \tcp{Inicializace}
+    \ForEach{\textup{vrchol $v\in V$}}{
         $stav(v)\gets$ \textit{nenalezený}\\
-        $D(v)\gets\infty,\,f(v)\gets\infty$\\
-    \end{For}
+        $D(v)\gets\infty,\,f(v)\gets\infty$
+    }
     $stav(v_0)\gets$ \textit{otevřený}\\
     $D(v_0)\gets 0,\,f(v_0)\gets\psi(v_0)$\\
-    \begin{While}{existují otevřené vrcholy}
-        $v\gets$ otevřený vrchol s nejmenším $f$-skóre\\\\
-        \begin{If}{$v=v_G$}
-            \Return{$D(v_G)$}\\
-        \end{If}
-        \begin{For}{všechny sousedy $w\in V$ vrcholu $v$}
-            \Comment{Našli jsme lepší cestu}
-            \begin{If}{$D(v)+\ell(v,w)<D(w)$}
+    \While{existují otevřené vrcholy}{
+        $v\gets$ otevřený vrchol s nejmenším $f$-skóre\\
+        \If{$v=v_G$}{
+            \Return{$D(v_G)$}
+        }
+        \ForEach{soused $w$ vrcholu $v$}{
+            \tcp{Našli jsme lepší cestu}
+            \If{$D(v)+\ell(v,w)<D(w)$}{
                 $D(w)\gets D(v)+\ell(v,w)$\\
                 $f(w)\gets D(v)+\ell(v,w)+\psi(w)$\\
                 $stav(w)\gets$ \textit{otevřený}
-            \end{If}
-        \end{For}
+            }
+        }
         $stav(v)\gets$ \textit{uzavřený}
-    \end{While}
-    \Return{$D(v_G)$}
-\end{pseudo}
+    }
+    \KwOut{Vzdálenost $v_0$ od $v_G$}
+\end{algorithm}
 
 \subsubsection{Správnost algoritmu A*}
 

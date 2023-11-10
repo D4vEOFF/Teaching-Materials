@@ -1,23 +1,24 @@
 \section{Prohledávání do hloubky}\label{sec:dfs}
 Na podobném přístupu, jako BFS, je založeno tzv. \emph{prohledávání do hloubky} (anglicky \emph{depth-first search}, zkráceně DFS). Vrcholy však tentokrát budeme zpracovávat rekurzivně. Pokaždé, když budeme otevírat nový vrchol, se rekurzivně zavoláme všechny jeho sousední vrcholy, u nichž opakujeme stejnou proceduru. Po prozkoumání všech sousedů daný vrchol uzavřeme. Stejně jako BFS si tak budeme uchovávat pole \emph{stavů} pro jednotlivé vrcholy.
-\begin{pseudo}{DFS}[Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.]
-    \Comment{Inicializace}
-    \begin{For}{každý vrchol $v\in V$}
+\begin{algorithm}\label{alg:dfs}
+    \caption{DFS (prohledávání do hloubky)}
+    \KwIn{Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$}
+    \tcp{Inicializace}
+    \ForEach{\textup{vrchol $v\in v$}}{
         $stav(v)\gets$ \textit{nenalezený}
-    \end{For}
+    }
     Zavolej DFS2($v_0$)\\
-
-    \Comment{Rekurzivní volání na vrcholy}
-    \begin{Function}{DFS2}[vrchol $v$]
+    \tcp{Rekurzivní volání na sousední vrcholy}
+    \Function{\textup{DFS2(vrchol $v\in V$)}}{
         $stav(v)\gets$ \textit{otevřený}\\
-        \begin{For}{každý sousední vrchol $w$ vrcholu $v$}
-            \begin{If}{$stav(w)=$ \textit{nenalezený}}
+        \ForEach{\textup{sousední vrchol $w$ vrcholu $v$}}{
+            \If{$stav(w)=$ \textit{nenalezený}}{
                 Zavolej DFS2($w$)
-            \end{If}
-        \end{For}
-        $stav(v)\gets$ \textit{uzavřený}
-    \end{Function}
-\end{pseudo}
+            }
+        }
+    }
+\end{algorithm}
+
 \begin{theorem}[Složitost DFS]\label{thm:dfs_slozitost}
     Algoritmus DFS doběhne v čase $\bigO{n+m}$ a spotřebuje paměť $\bigO{n+m}$.
 \end{theorem}

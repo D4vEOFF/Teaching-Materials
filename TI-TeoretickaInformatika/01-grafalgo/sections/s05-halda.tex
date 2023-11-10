@@ -1,13 +1,17 @@
 \section{Binární halda}\label{sec:halda}
 Uveďme motivační příklad na úvod. Mějme seznam čísel, z něhož chceme (pokud možno co nejrychleji) vybrat minimální/maximální hodnotu. Pro maximum bychom sestavit následující jednoduchý algoritmus.
-\begin{pseudo}{Max}[Seznam čísel $x_1,x_2,\dots,x_n$][Maximální hodnota seznamu \textit{m}]
+\begin{algorithm}\label{alg:max}
+    \caption{Vyhledání maximální hodnoty v seznamu (\textsc{Max})}
+    \KwIn{Seznam čísel $x_1,x_2,\dots,x_n$}
     $m\gets x_1$\\
-    \begin{For}{$i=1,2,\dots,n$}
-        \begin{If}{$x_i>m$}
+    \For{$i=1,2,\dots,x_n$}{
+        \If{$x_i>m$}{
             $m\gets x_i$
-        \end{If}
-    \end{For}
-\end{pseudo}
+        }
+    }
+    \Return{m}
+    \KwOut{Maximální hodnota seznamu \textit{m}}
+\end{algorithm}
 
 Časová složitost bude zjevně $\bigO{n}$, neboť algoritmus prochází všech $n$ prvků. Takovou úlohu lze však řešit rychleji, pokud si prvky vhodně uspořádáme. K tomu můžeme použít tzv. \emph{haldu}. 
 \begin{definition}[Minimová binární halda]\label{def:binarni_halda}

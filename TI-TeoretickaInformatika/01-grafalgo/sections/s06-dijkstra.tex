@@ -22,28 +22,32 @@ Zaměřme se na grafy, jejichž váhy hran jsou nezáporné. Záporně ohodnocen
 Podobným grafům se tak chceme vyhnout, neboť by naše úvahy pak již nemusely fungovat (cestu mezi vrcholy bychom mohli potenciálně do nekonečně vylepšovat a algoritmus by se tak nikdy nezastavil).
 
 V dalších odstavcích budeme váhu hrany vedoucí z vrcholu $u$ do vrcholu $v$ značit $\ell(u,v)$.
-\begin{pseudo}{Dijkstra}[Nezáporně ohodnocený graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.][Seznam vzdáleností $D$.]
-    \Comment{Inicializace}
-    \begin{For}{všechny vrcholy $v\in V$}
+\begin{algorithm}
+    \caption{\textsc{Dijkstra}}
+    \KwIn{Nezáporně ohodnocený graf $G=(V,E)$ a počáteční vrchol $v_0\in V$}
+    \tcp{Inicializace}
+    \ForEach{\textup{vrchol $v\in V$}}{
         $stav(v)\gets$ \textit{nenalezený}\\
-        $D(v)\gets\infty$\\
-    \end{For}
+        $D(v)\gets\infty$
+    }
     $stav(v_0)\gets$ \textit{otevřený}\\
     $D(v_0)\gets 0$\\
-    \begin{While}{existují otevřené vrcholy}
-        \Comment{Kandidát na nejkraší cestu do sousedních vrcholů}
+    \While{existují otevřené vrcholy}{
+        \tcp{Kandidát na nejkraší cestu do sousedních vrcholů}
         $v\gets$ otevřený vrchol s nejmenším $D$\\
-
-        \begin{For}{všechny sousedy $w\in V$ vrcholu $v$}
-            \Comment{Našli jsme lepší cestu}
-            \begin{If}{$D(v)+\ell(v,w)<D(w)$}
+        
+        \ForEach{soused $w\in V$ vrcholu $v$}{
+            \tcp{Našli jsme lepší cestu}
+            \If{$D(v)+\ell(v,w)<D(w)$}{
                 $D(w)\gets D(v)+\ell(v,w)$\\
                 $stav(w)\gets$ \textit{otevřený}
-            \end{If}
-        \end{For}
+            }
+        }
         $stav(v)\gets$ \textit{uzavřený}
-    \end{While}
-\end{pseudo}
+    }
+    \KwOut{Seznam vzdáleností $D$}
+
+\end{algorithm}
 \begin{figure}[h]
     \centering
     \includegraphics[scale=\graphimgsize]{01-grafalgo/images/ch01_dijkstra_kratsi_cesta.pdf}

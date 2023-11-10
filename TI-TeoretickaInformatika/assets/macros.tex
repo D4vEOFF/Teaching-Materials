@@ -13,17 +13,17 @@
 \newcommand{\topindent}{3mm}
 
 \theoremstyle{definition}
-\newtheorem{theorem}[algcounter]{Věta}
-\newtheorem{lemma}[algcounter]{Lemma}
-\newtheorem{proposition}[algcounter]{Tvrzení}
-\newtheorem{corollary}[algcounter]{Důsledek}
+\newtheorem{theorem}[subsection]{Věta}
+\newtheorem{lemma}[subsection]{Lemma}
+\newtheorem{proposition}[subsection]{Tvrzení}
+\newtheorem{corollary}[subsection]{Důsledek}
 
-\newtheorem{definition}[algcounter]{Definice}
+\newtheorem{definition}[subsection]{Definice}
 \newtheorem*{definition*}{Definice}
-\newtheorem{remark}[algcounter]{Poznámka}
+\newtheorem{remark}[subsection]{Poznámka}
 \newtheorem*{remark*}{Poznámka}
 \newtheorem*{symboldef}{Značení}
-\newtheorem{example}[algcounter]{Příklad}
+\newtheorem{example}[subsection]{Příklad}
 \newtheorem*{example*}{Příklad}
 
 % Enumerate
@@ -32,9 +32,12 @@
 % Itemize
 \setlist[itemize]{topsep=0pt,itemsep=0ex,partopsep=1ex,parsep=1ex}
 
-% Align algorithm numbering with theorems
-\counterwithin*{algcounter}{section}
-\counterwithin*{algcounter}{subsection}
+% Algoritmy
+\numberwithin{algocf}{section}
+\renewcommand{\algorithmcfname}{Algoritmus}
+\SetKwInput{KwIn}{Vstup}
+\SetKwInput{KwOut}{Výstup}
+\SetKwProg{Function}{Funkce}{}{end}
 
 % Math
 \newcommand{\powset}[1]{\mathcal{P}(#1)}

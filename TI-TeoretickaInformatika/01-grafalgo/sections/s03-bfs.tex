@@ -9,29 +9,31 @@ Pro každý vrchol si budeme uchovávat jeho \emph{stav}.
     \item \emph{Uzavřený} -- vrchol jsme prozkoumali společně se všemi jeho sousedy a dál se jím již netřeba zabývat.
 \end{itemize}
 Na počátku začneme s jedním otevřeným vrcholem a to $v_0$ (zde začínáme). Po prozkoumání všech sousedních vrcholů se jejich stav změní na otevřený a počáteční vrchol $v_0$ se uzavře. Obdobně pokračujeme pro nově otevřené vrcholy. Pokud by náhodou mezi dvojicí otevřených vrcholů existovala hrana, pak si sousedního vrcholu všímat nebudeme, neboť byl již otevřen. Pro každý vrchol se ještě dodatečně můžeme uchovávat informaci, jak daleko se nachází od $v_0$, co do počtu hran ležících na cestě.
-
-\begin{pseudo}{BFS}[Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$.][Seznam vzdáleností $D$.]
-    \Comment{Inicializace}
-    \begin{For}{každý vrchol $v\in V$}
+\begin{algorithm}\label{alg:bfs}
+    \caption{BFS (prohledávání do šířky)}
+    \KwIn{Graf $G=(V,E)$ a počáteční vrchol $v_0\in V$}
+    \tcp{Inicializace}
+    \ForEach{\textup{vrchol $v\in V$}}{
         $stav(v)\gets$ \textit{nenalezený}\\
         $D(v)\gets\infty$
-    \end{For}
+    }
     $stav(v_0)\gets$ \textit{otevřený}\\
-    $D(v_0)\gets 0$\\\\
+    $D(v_0)\gets 0$\\
     Založ frontu $Q$ a přidej do ní vrchol $v_0$\\
-    \begin{While}{je fronta $Q$ neprázdná}
-        $v\gets$ první vrchol ve frontě $Q$, který z ní odebereme\\\\
-        \Comment{Prozkomáváme všechny dosud neobjevené sousedy}
-        \begin{For}{každý sousední vrchol $w$ vrcholu $v$}
-            \begin{If}{$stav(w)=$ \textit{nenalezený}}
+    \While{\textup{fronta $Q$ je neprázdná}}{
+        $v\gets$ první vrchol ve frontě $Q$, který z ní odebereme\\
+        \tcp{Prozkomáváme všechny dosud neobjevené sousedy}
+        \ForEach{\textup{sousední vrchol $w$ vrcholu $v$}}{
+            \If{$stav(w)=$ \textit{nenalezený}}{
                 $stav(w)\gets$ \textit{otevřený}\\
                 $D(w)\gets D(v)+1$\\
                 Přidej $w$ do fronty $Q$
-            \end{If}
-        \end{For}
+            }
+        }
         $stav(v)\gets$ \textit{uzavřený}
-    \end{While}
-\end{pseudo}
+    }
+    \KwOut{Seznam vzdáleností $D$}
+\end{algorithm}
 
 BFS rozděluje vrcholy do vrstev podle toho, v jaké vzdálenosti od počátečního vrcholu se nachází (viz obrázek \ref{fig:bfs_vrstvy}). Nejdříve jsou prozkoumány vrcholy ve vzdálenosti 0 (tj. pouze $v_0$), poté ve vzdálenostech 1, 2, \dots Z toho vyplývá, že kdykoliv při otevírání libovolného vrcholu $v$ nastavujeme hodnotu $D(v)$, bude tato hodnota vždy odpovídat délce nejkratší cesty z $v_0$ do $v$. Tato hodnota bude však nastavena pouze u těch vrcholů, které jsou z $v_0$ dosažitelné (ostatní vrcholy zůstanou ve stavu nenalezený).
 \begin{figure}[h]
