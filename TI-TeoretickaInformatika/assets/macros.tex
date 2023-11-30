@@ -57,11 +57,15 @@
 \def\P{\textsf{P}}
 \def\NP{\textsf{NP}}
 
-\newcommand{\problem}[2]{
-  \begin{minipage}
-    \textbf{Vstup problému:} #1\\
-    \textbf{Výstup roblému:} #2
-  \end{minipage}
+\setlength{\fboxsep}{3mm}
+\newcommand{\problem}[3]{
+  \fbox{
+    \begin{minipage}{0.65\textwidth}
+      \textsc{#1}\\[3mm]
+        \indent\textbf{Vstup problému:} #2\\[3mm]
+        \indent\textbf{Výstup problému:} #3
+    \end{minipage}
+  }
 }
 
 % Time complexities
