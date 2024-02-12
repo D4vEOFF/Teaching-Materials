@@ -1,23 +1,17 @@
-\documentclass{beamer}
-
-\input{packages.tex}
+\documentclass[11pt,aspectratio=169]{beamer}
 
 % Assets
-\input{assets/macros.tex}
-
-% Theme
-\usetheme{Boadilla}
-\setbeamertemplate{frame numbering}[fraction]
-\usecolortheme[named=darkblue]{structure}
-\setbeamertemplate{navigation symbols}{}
+\input{../assets/packages.tex}
+\input{../assets/macros.tex}
+\input{../assets/theme.tex}
 
 % Title page
-\subtitle{Práce s plošnými strukturogramy}
-\author{David Weber}
-\date{\today}
+\title{Práce s plošnými strukturogramy}
+\input{../titlepage.tex}
 
 \begin{document}
 
+    \section{Opakování}
     \begin{frame}[t]
         \titlepage
     \end{frame}
@@ -25,7 +19,7 @@
     \begin{frame}[t]{Nejdříve zopáčko...}
         \only<2->{Co vypíše program níže?}
         \only<3->{\begin{figure}
-            \includegraphics[scale=0.8]{images/priklad1_opakovani.pdf}
+            \includegraphics[scale=.7]{../images/01-priklad1_opakovani.pdf}
         \end{figure}}
     \end{frame}
 
@@ -37,17 +31,19 @@
         \only<4->{Pro každé opakování vnější iterace se vnitřní iterace provede třikrát $\implies$ $3\cdot 3=9$.}
     \end{frame}
 
+    \section{Příklad s výstupem}
     \begin{frame}[t]{Upravená varianta}
         \only<2->{Zkusme program trochu upravit. Jak se změní výstup programu, bude-li vnitřní iterace \textbf{s testem na konci}?}
         \only<3->{\begin{figure}
-            \includegraphics[scale=0.8]{images/priklad2_opakovani.pdf}
+            \includegraphics[scale=.7]{../images/01-priklad2_opakovani.pdf}
         \end{figure}}
     \end{frame}
 
     \begin{frame}{Upravená varianta}
-        Kód vnitřní iterace se provede opět třikrát $\implies$ \markgreen{výstup bude stejný. :-)}
+        Kód vnitřní iterace se provede opět třikrát $\implies$ \markgreen{výstup bude stejný. \emoji{slightly-smiling-face}}
     \end{frame}
 
+    \section{Obecný vstup}
     \begin{frame}[t]{Obecný vstup}
         \only<2->{Zkusme program zobecnit. Nechceme, aby počet vypsaných symbolů byl vždy pevný\dots}
         \only<3->{\begin{center}
@@ -58,7 +54,7 @@
 
     \begin{frame}{Obecný vstup}
         \begin{figure}
-            \includegraphics[scale=0.8]{images/priklad3_opakovani.pdf}
+            \includegraphics[scale=.7]{../images/01-priklad3_opakovani.pdf}
         \end{figure}
     \end{frame}
 
@@ -71,10 +67,11 @@
         \only<5->{$\implies$ $n\cdot 3=\markgreen{3n}$ symbolů X.}
     \end{frame}
 
+    \section{Samostatná práce}
     \begin{frame}[t]{Samostatná práce}
         \only<2->{Kolik symbolů X vypíše tento program?}
         \only<3->{\begin{figure}
-            \includegraphics[scale=0.8]{images/priklad4_opakovani.pdf}
+            \includegraphics[scale=.7]{../images/01-priklad4_opakovani.pdf}
         \end{figure}}
     \end{frame}
 
@@ -82,7 +79,15 @@
         \only<2->{\begin{center}
             \[\overbrace{\markgreen{XXX\dots X}}^{n}\;\overbrace{\markred{XXX\dots X}}^{n}\;\overbrace{\markorange{XXX\dots X}}^{n}\;\cdots\;\overbrace{\markgreen{XXX\dots X}}^{n}\]
         \end{center}}
-        \only<3->{Pro každé opakování vnější iterace se vnitřní iterace se zopakuje $n$-krát} \only<3->{$\implies$ správná odpověď je $\markgreen{n\cdot n=n^2}$ symbolů X. :-)}
+        \only<3->{Pro každé opakování vnější iterace se vnitřní iterace se zopakuje $n$-krát} \only<3->{$\implies$ správná odpověď je $\markgreen{n\cdot n=n^2}$ symbolů X. \emoji{slightly-smiling-face}}
+    \end{frame}
+
+    \section{Závěr}
+    \begin{frame}{Dotazy?}
+        \begin{figure}
+            \centering
+            \includegraphics[scale=.5]{../images/discussion.pdf}
+        \end{figure}
     \end{frame}
 
 \end{document}
