@@ -57,7 +57,7 @@
             \begin{lstlisting}
 FILE* filePtr;
             \end{lstlisting}
-            \item \markorange{$\implies$ \texttt{filePtr} je reference na konkrétní pozici v~souboru.}
+            \item \markorange{$\implies$ \texttt{filePtr} je ukazatel na referenci na konkrétní soubor.}
         \end{itemize}
     \end{frame}
 
@@ -70,7 +70,7 @@ FILE* filePtr;
             \end{center}
             \item Funkce přijímá dvojici parametrů (obojí si později přiblížíme \emoji{slightly-smiling-face}):
             \begin{itemize}
-                \item \textbf{cestu k~souboru},
+                \item \textbf{název souboru},
                 \item \textbf{režim otevření souboru}.
             \end{itemize}
             \begin{lstlisting}
@@ -92,7 +92,7 @@ FILE* filePtr = fopen("soubor.txt", "r");
             \begin{center}
                 $\implies$ v~jeden moment může být otevřen pouze omezený počet souborů.
             \end{center}
-            \item Soubor je potřeba po otevření také někdy užavřít.
+            \item Soubor je potřeba po otevření také někdy uzavřít.
             \item $\implies$ K~tomu slouží funkce \texttt{fclose()}
             \item Ta přijímá jako (jediný) parametr \textbf{ukazatel na daný soubor}.
             \begin{lstlisting}
@@ -110,7 +110,7 @@ fclose(filePtr);
     \subsection{Nulový ukazatel}
     \begin{frame}[t,fragile]{Nulový ukazatel}
         \begin{itemize}
-            \item Nulový ukazatel (angl. \emph{NULL pointer}) je ukazatel na adresu $0x00$.
+            \item Nulový ukazatel (angl. \emph{NULL pointer}) je ukazatel na adresu \texttt{0x00}.
             \item Používá se (mimo jiné) k~detekci chyb v~programu.
             \item K~inicializaci nulového ukazatele lze použít makro \texttt{NULL} (nebo hodnotu $0$).
             \begin{lstlisting}
