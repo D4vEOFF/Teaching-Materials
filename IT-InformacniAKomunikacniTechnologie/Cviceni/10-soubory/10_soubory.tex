@@ -174,9 +174,10 @@ if (filep == NULL) {
             \item Již známe základní funkce \texttt{fopen()} a \texttt{fclose()}.
             \item Další funkce:
             \begin{itemize}
-                \item \texttt{\markorange{fscanf()}}, \texttt{\markorange{fgets()}} -- čtení ze souboru,
+                \item \texttt{\markorange{fscanf()}}, \texttt{\markorange{fgets()}}, \texttt{fgetc()} -- čtení ze souboru,
                 \item \texttt{\markorange{fprintf()}} -- zápis do souboru,
                 \item \texttt{\markorange{fseek()}}, \texttt{\markorange{rewind()}} -- pohyb kurzoru na určité místo v~souboru.
+                \item \texttt{\markorange{feof()}} -- detekce konce souboru.
             \end{itemize}
         \end{itemize}
     \end{frame}
@@ -239,6 +240,20 @@ if (success == NULL) {
 }
             \end{lstlisting}
         \end{itemize}
+    \end{frame}
+
+    \subsection{Funkce fgetc()}
+    \begin{frame}[t,fragile]{Funkce \texttt{fgetc()}}
+        \begin{itemize}
+            \item Funguje stejně, jako funkce \texttt{fgets()}, akorát načítá pouze jeden znak.
+            \item Načtený znak ze souboru \textbf{vrací jako návratovou hodnotu}.
+            \item Jako argument přijímá \textbf{ukazatel na soubor}.
+        \end{itemize}
+        \begin{lstlisting}
+FILE* filep = fopen("text.txt", "r");
+char str[20];
+str[0] = fgetc(filep);
+        \end{lstlisting}
     \end{frame}
 
     \subsection{Funkce fprintf() \textrm{I}}
@@ -393,6 +408,24 @@ fgets(buffer, 20, filep);
 
 // Presune kurzor na zacatek souboru
 rewind(filep);
+        \end{lstlisting}
+    \end{frame}
+
+    \begin{frame}[t,fragile]{Funkce \texttt{feof()}}
+        \begin{itemize}
+            \item Funkce slouží pro detekci, zda se kurzor \textbf{nachází na konci souboru}.
+            \item Vrací $0$, pokud se kurzor nachází na konci souboru, jinak vrací nenulové číslo.
+            \item Jako argument přijímá pouze \textbf{ukazatel na soubor}.
+        \end{itemize}
+        \begin{lstlisting}
+FILE* filep = fopen("text.txt", "r");
+while (1) {
+    char c = fgetc(filep);
+    if (!feof(filep)) {
+        break;
+    }
+    printf("%c", c);
+}
         \end{lstlisting}
     \end{frame}
 
